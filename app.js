@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public/images/electronics')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/larger')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/medium')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/thumbnail')));
-app.use(express.static(path.join(__dirname, 'public/webfonts'))); 
+app.use(express.static(path.join(__dirname, 'webfonts/fa-solid-900.woff2'))); 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
