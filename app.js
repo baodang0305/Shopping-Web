@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public/stylesheets')));
 app.use(express.static(path.join(__dirname, 'public/stylesheets/theme-color')));
 app.use(express.static(path.join(__dirname, 'public/javascripts')));
 app.use(express.static(path.join(__dirname, 'public/images')));
+app.use(express.static(path.join(__dirname, 'public/images/fashion')));
 app.use(express.static(path.join(__dirname, 'public/images/flag')));
 app.use(express.static(path.join(__dirname, 'public/images/slider')));
 app.use(express.static(path.join(__dirname, 'public/images/slider/ajax-loader.gif')));
@@ -31,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'public/images/electronics')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/larger')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/medium')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/thumbnail')));
-
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
 app.use('/', indexRouter);
