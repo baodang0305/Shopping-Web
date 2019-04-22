@@ -1,4 +1,23 @@
-body {
+.input_wrap {
+  float: left;
+  clear: none;
+}
+
+label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0;
+}
+
+input[type=radio], input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
+
+
+/* body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
 }
@@ -22,10 +41,11 @@ h2 {
 
 #sendbutton {
   display: "inline"
-}
+} */
+
 /* STRUCTURE */
 
-.wrapper {
+/* .wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -56,26 +76,26 @@ h2 {
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
-}
+} */
 
 
 
 /* TABS */
 
-h2.inactive {
+/* h2.inactive {
   color: #cccccc;
 }
 
 h2.active {
   color: #0d0d0d;
   border-bottom: 2px solid #5fbae9;
-}
+} */
 
 
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+/* input[type=button], input[type=submit], input[type=reset]  {
   background-color: #ff6666;
   border: none;
   color: white;
@@ -137,14 +157,14 @@ input[type=text]:focus {
 
 input[type=text]:placeholder {
   color: #cccccc;
-}
+} */
 
 
 
 /* ANIMATIONS */
 
 /* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
+/* .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
   -webkit-animation-duration: 1s;
@@ -177,10 +197,10 @@ input[type=text]:placeholder {
     -webkit-transform: none;
     transform: none;
   }
-}
+} */
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+/* @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
@@ -221,10 +241,10 @@ input[type=text]:placeholder {
   -webkit-animation-delay: 1s;
   -moz-animation-delay: 1s;
   animation-delay: 1s;
-}
+} */
 
 /* Simple CSS3 Fade-in Animation */
-.underlineHover:after {
+/* .underlineHover:after {
   display: block;
   left: 0;
   bottom: -10px;
@@ -242,15 +262,15 @@ input[type=text]:placeholder {
 .underlineHover:hover:after{
   width: 100%;
 }
-
+ */
 
 
 /* OTHERS */
 
-*:focus {
+/* *:focus {
     outline: none;
 }
 
 #icon {
   width:60%;
-}
+} */
