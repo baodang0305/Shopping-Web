@@ -20,16 +20,9 @@ h2 {
   color: #cccccc;
 }
 
-<<<<<<< HEAD
-#signUp {
-  display: none;
-}
-=======
 #sendbutton {
   display: "inline"
 }
-
->>>>>>> forgotpasswordfeatureadded
 /* STRUCTURE */
 
 .wrapper {
