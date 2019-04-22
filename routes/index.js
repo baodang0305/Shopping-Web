@@ -34,4 +34,8 @@ router.get('/forgotPassword', function(req, res,next){
 router.get('/account', function(req, res,next){
   res.render('account', { title: 'Express' });
 });
+
+router.get('/wishlist', function (req, res, next) {
+    res.render('wishlist', { title: 'Express' });
+});
 module.exports = router;
