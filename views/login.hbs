@@ -1,55 +1,56 @@
-<link rel="stylesheet" type="text/css" href="addingStyles.css">
-<link rel="stylesheet" type="text/css" href="default-theme.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-</br>
+<!-- catg header banner section -->
+<section id="aa-catg-head-banner">
+<img src="fashion-header-bg-8.jpg" alt="fashion img">
+<div class="aa-catg-head-banner-area">
+ <div class="container">
+  <div class="aa-catg-head-banner-content">
+    <h2>Trang đăng nhập</h2>
+    <ol class="breadcrumb">
+      <li><a href="/">Trang chủ</a></li>
+      <li class="active">Trang đăng nhập</li>
+    </ol>
+  </div>
+ </div>
+</div>
+</section>
+<!-- / catg header banner section -->
+
+<!-- Cart view section -->
+<section id="aa-myaccount">
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs aa-products-tab">
-          <li class="nav-item">
-            <a class="nav-link active" href="#" data-toggle="tab" aria-expanded="true" onclick="changeTab(event, 'login')">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="tab" aria-expanded="false" onclick="changeTab(event, 'signUp')">Sign Up</a>
-          </li>
-        </ul>
-      <div class="wrapper fadeInDown tabcontent" id="login">
-        <div id="formContent">
-        </br>
-          <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
-          </form>
-
-    <!-- Remind Passowrd -->
-          <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
+ <div class="row">
+   <div class="col-md-12">
+    <div class="aa-myaccount-area">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="aa-myaccount-login">
+            <h4>Đăng nhập</h4>
+             <form action="" class="aa-login-form">
+              <label for="">Tên đăng nhập hoặc email<span>*</span></label>
+               <input type="text" placeholder="Username or email">
+               <label for="">Mật khẩu<span>*</span></label>
+                <input type="password" placeholder="Password">
+                <button type="submit" class="aa-browse-btn">Đăng nhập</button>
+                <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Ghi nhớ đăng nhập </label>
+                <p class="aa-lost-password"><a href="forgotPassword">Quên mật khẩu</a></p>
+              </form>
+            </div>
           </div>
-
+          <div class="col-md-6">
+            <div class="aa-myaccount-register">
+             <h4>Đăng ký</h4>
+             <form action="" class="aa-login-form">
+                <label for="">Tên đăng nhập hoặc email<span>*</span></label>
+                <input type="text" placeholder="Username or email">
+                <label for="">Mật khẩu<span>*</span></label>
+                <input type="password" placeholder="Password">
+                <button type="submit" class="aa-browse-btn">Đăng ký</button>
+              </form>
+            </div>
           </div>
         </div>
-
-        <div class="wrapper fadeInDown tabcontent" id="signUp">
-          <div id="formContent">
-          </br>
-            <form>
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Tên bạn">
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="SDT">
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Địa chỉ">
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
-              <input type="text" id="password" class="fadeIn third" name="login" placeholder="Mật khẩu">
-              <input type="submit" class="fadeIn fourth" value="Sign Up">
-            </form>
-
-      <!-- Remind Passowrd -->
-            <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
-            </div>
-
-            </div>
-          </div>
-    </div>
-  </div>
+     </div>
+   </div>
+ </div>
 </div>
-<script src="tabBar.js"></script>
+</section>
