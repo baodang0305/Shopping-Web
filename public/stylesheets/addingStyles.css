@@ -20,8 +20,9 @@ h2 {
   color: #cccccc;
 }
 
-
-
+#signUp {
+  display: none;
+}
 /* STRUCTURE */
 
 .wrapper {

@@ -1,24 +1,21 @@
 <link rel="stylesheet" type="text/css" href="addingStyles.css">
+<link rel="stylesheet" type="text/css" href="default-theme.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 </br>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="aa-header-bottom-area">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs aa-products-tab">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Login</a>
+            <a class="nav-link active" href="#" data-toggle="tab" aria-expanded="true" onclick="changeTab(event, 'login')">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="#" data-toggle="tab" aria-expanded="false" onclick="changeTab(event, 'signUp')">Sign Up</a>
           </li>
         </ul>
-      </br>
-      <div class="wrapper fadeInDown">
+      <div class="wrapper fadeInDown tabcontent" id="login">
         <div id="formContent">
-          <!-- <div class="fadeIn first">
-            //some icon here
-          </div> -->
-    <!-- Login Form -->
+        </br>
           <form>
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
             <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
@@ -32,7 +29,27 @@
 
           </div>
         </div>
-      </div>
+
+        <div class="wrapper fadeInDown tabcontent" id="signUp">
+          <div id="formContent">
+          </br>
+            <form>
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Tên bạn">
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="SDT">
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Địa chỉ">
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
+              <input type="text" id="password" class="fadeIn third" name="login" placeholder="Mật khẩu">
+              <input type="submit" class="fadeIn fourth" value="Sign Up">
+            </form>
+
+      <!-- Remind Passowrd -->
+            <div id="formFooter">
+              <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+            </div>
+          </div>
     </div>
   </div>
 </div>
+<script src="tabBar.js"></script>
