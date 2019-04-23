@@ -38,4 +38,8 @@ router.get('/account', function(req, res,next){
 router.get('/wishlist', function (req, res, next) {
     res.render('wishlist', { title: 'Express' });
 });
+
+router.get('/status-cart', function (req, res, next) {
+    res.render('status-cart', { title: 'Express' });
+});
 module.exports = router;

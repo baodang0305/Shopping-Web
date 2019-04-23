@@ -101,12 +101,22 @@
                 </div>
                 <!-- / header top left -->
                 <div class="aa-header-top-right">
-                  <ul class="aa-head-top-nav-right">
-                    <li><a href="/login">Đăng ký</a></li>
-                    <li><a href="/account">Tài khoản của tôi</a></li>
-                    <li class="hidden-xs"><a href="/cart">Giỏ hàng</a></li>
-                    <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
-                  </ul>
+                    <ul class="aa-head-top-nav-right">
+                        <li><a href="/login">Đăng ký</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Tài khoản của tôi<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="/account">Quản lý tài khoản</a></li>
+                                    <li><a href="/status-cart">Đơn hàng cảu tôi</a></li>
+                                    <li><a href="#">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="hidden-xs"><a href="/cart">Giỏ hàng</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                    </ul>
                 </div>
               </div>
             </div>
@@ -166,7 +176,7 @@
                         </span>
                       </li>
                     </ul>
-                    <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                    <a class="aa-cartbox-checkout aa-primary-btn" href="/checkout">Checkout</a>
                   </div>
                 </div>
                 <!-- / cart box -->
