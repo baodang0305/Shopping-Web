@@ -6,11 +6,16 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "esm": "^3.2.22",
     "express": "~4.16.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
+    "lodash": "^4.17.11",
+    "mongodb": "^3.2.3",
+    "mongoose-paginate-v2": "^1.2.1",
     "morgan": "~1.9.0"
   }
 }
