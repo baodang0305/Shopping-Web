@@ -1,20 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var mongo = require('mongodb');
-var assert = require('assert');
-const MongoClient = require('mongodb').MongoClient;
 
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
-
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log('connection accepted');
-  client.close();
-});
-
-var url = 'mongodb://127.0.0.1:27017/';
+var url = "mongodb://127.0.0.1:27017/";
 var mongoClient = require('mongodb').MongoClient;
 mongoClient.connect(url, function (err, db) {
     //neu ket noi khong thanh cong thi in ra loi
@@ -22,7 +9,7 @@ mongoClient.connect(url, function (err, db) {
     //neu thanh cong thi log ra thong bao
     console.log('Ket noi thanh cong');
     var dbo = db.db("SHOPPING-WEB")
-    db.createCollection('KhachHang', function (err, res) {
+    db.createCollection("KhachHang", function (err, res) {
       //Neu co loi thi in ra
       if (err) throw err;
       console.log('Tao thanh cong collection');
