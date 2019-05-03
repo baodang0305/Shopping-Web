@@ -1,5 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var mongo = require('mongodb');
+var assert = require('assert');
+const MongoClient = require('mongodb').MongoClient;
+
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log('connection accepted');
+  client.close();
+});
 
 var url = 'mongodb://127.0.0.1:27017/';
 var mongoClient = require('mongodb').MongoClient;
