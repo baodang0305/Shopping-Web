@@ -1,6 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
+var url = 'mongodb://127.0.0.1:27017/';
+var mongoClient = require('mongodb').MongoClient;
+mongoClient.connect(url, function (err, db) {
+    //neu ket noi khong thanh cong thi in ra loi
+    if (err) throw err;
+    //neu thanh cong thi log ra thong bao
+    console.log('Ket noi thanh cong');
+    var dbo = db.db("SHOPPING-WEB")
+    db.createCollection('KhachHang', function (err, res) {
+      //Neu co loi thi in ra
+      if (err) throw err;
+      console.log('Tao thanh cong collection');
+
+      db.close();
+  });
+    db.close();
+    console.log('close thanh cong');
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
