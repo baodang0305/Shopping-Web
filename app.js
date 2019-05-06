@@ -155,6 +155,7 @@ MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     collectionCart.insertOne(cart, function(err, res){
       console.log("cart is created ")
     });
+
   }
     
 });
