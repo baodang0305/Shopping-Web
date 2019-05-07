@@ -16,11 +16,16 @@ router.get('/login', function(req, res,next){
     else{
       console.log("Successfully connected");
       const collectionCustomer = client.db("shoppingdb").collection("Customer");
+      var arrayList = [];
+      var done = 0;
       var cursor = collectionCustomer.find({})
       cursor.forEach(function(CustomerModel) {
-        
+        arrayList.push(CustomerModel.UserName);
+        done++;
+        if (done === 3) {
+          res.render('login', {title: 'Đăng nhập và đăng ký', customersName: arrayList});
+        }
       });
-
     }
   });
 });
