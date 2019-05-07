@@ -90,12 +90,22 @@ MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 
     //add cart
     const collectionCart = client.db("shoppingdb").collection("Cart");
-    const cart  = new Cart({
+    const cart1  = new Cart({
       UserName: customer1.UserName,
-      Id: [{Id: product1.Id}, {Id: product2.Id}]
+      ProductId: product1._Id
+    });
+    const cart2 = new Cart({
+      UserName: customer1.UserName,
+      ProductId: product2._Id
+    });
+    const cart3 = new Cart({
+      UserName: customer2.UserName,
+      ProductId: product3._Id
     });
 
-    collectionCart.insertOne(cart, function(err, res){
+    console.log(cart3.UserName)
+
+    collectionCart.insert([cart1, cart2, cart3], function(err, res){
       console.log("cart is created ")
     });
   }
