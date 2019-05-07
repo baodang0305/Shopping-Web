@@ -3,16 +3,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const cartSchame = new Schema({
     UserName:{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "Customer",
         required: true
     },
-    Id: [{ Id: {
-            type: Schema.Types.ObjectId,
+    ProductId: {
+            type: String,
             ref: "Product",
             required:true
-            }
-    }]
+    }
 });
 
 const Cart = mongoose.model("Cart", cartSchame);

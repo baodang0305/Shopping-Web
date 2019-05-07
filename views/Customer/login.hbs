@@ -25,12 +25,20 @@
           <div class="col-md-6">
             <div class="aa-myaccount-register">
              <h4>Đăng Ký</h4>
-             <form action="" class="aa-login-form">
+             <form action="/Customer/signup" class="aa-login-form" method="post">
+               <div class="form-group">
                 <label for="">Tên đăng nhập hoặc email<span>*</span></label>
                 <input type="text" placeholder="Username or email">
+              </div>
+               <div class="form-group">
                 <label for="">Mật khẩu<span>*</span></label>
                 <input type="password" placeholder="Password">
+              </div>
+              <input type='hidden' name="_csrf" value="{{ csrfToken }}">
                 <button type="submit" class="aa-browse-btn">Đăng Ký</button>
+                {{ #foreach customers}}
+                  
+                {{/foreach}}
               </form>
             </div>
           </div>
