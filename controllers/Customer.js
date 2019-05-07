@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var csrf = require('csurf');
-var csrfProtection = csrf();
+// var csrf = require('csurf');
+// var csrfProtection = csrf();
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 var CustomerModel = require('../models/Customer');
@@ -27,7 +27,7 @@ router.get('/login', function(req, res,next){
         }
       });
     }
-  })
+  });
 });
 
 router.get('/forgotPassword', function(req, res, next){
