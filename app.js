@@ -46,9 +46,9 @@ app.use(express.static(path.join(__dirname, 'public/scss')));
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
 app.use('/', indexRouter);
-app.use('/', CustomerRoute);
-app.use('/', ProductRoute);
-app.use('/', CartRoute);
+app.use('/', customerRouter);
+app.use('/', productRouter);
+app.use('/', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
