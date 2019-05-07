@@ -36,15 +36,17 @@
               </div>
               <input type='hidden' name="_csrf" value="{{ csrfToken }}">
                 <button type="submit" class="aa-browse-btn">Đăng Ký</button>
-                {{ #foreach customers}}
-                  
-                {{/foreach}}
               </form>
             </div>
           </div>
            <div class="col-md-6">
             <div class="aa-myaccount-login">
             <h4>Đăng Nhập</h4>
+            <ul>
+              {{# each customersName}}
+                <li>{{ this }}</li>
+              {{/each}}
+            </ul>
              <form action="" class="aa-login-form">
               <label for="">Tên đăng nhập hoặc email<span>*</span></label>
                <input type="text" placeholder="Username or email">

@@ -7,16 +7,6 @@ const MongoClient = require("mongodb").MongoClient;
 var CustomerModel = require('../models/Customer');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
-// router.use(csrfProtection);
-
-function iterateFunc(doc) {
-   console.log(JSON.stringify(doc, null, 3));
-}
-
-function errorFunc(error) {
-   console.log(error);
-}
-
 router.get('/login', function(req, res,next){
   MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     if(err){
@@ -25,14 +15,16 @@ router.get('/login', function(req, res,next){
     else{
       console.log("Successfully connected");
       const collectionCustomer = client.db("shoppingdb").collection("Customer");
+      var arrayList = [];
+      var done = 0;
       var cursor = collectionCustomer.find({})
-      cursor.forEach(function(doc) {
-        console.log('asdf')
-        console.log(doc)
-        console.log('asdfqwe')
-        console.log(JSON.stringify(doc, null, 3))
-      }, errorFunc);
-
+      cursor.forEach(function(CustomerModel) {
+        arrayList.push(CustomerModel.UserName);
+        done++;
+        if (done === 3) {
+          res.render('login', {title: 'Đăng nhập và đăng ký', customersName: arrayList});
+        }
+      });
     }
   })
 });
