@@ -50,10 +50,10 @@ MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     const collectionProduct = client.db("shoppingdb").collection("Product");
     const product1  = new Product({
       _Id: "1",
-      Image: "image1.jpg",
-      Name: "Tshirt1",
-      Category: "Tshirt",
-      Color: "Red",
+      Image: "polo-shirt-1.png",
+      Name: "Polo-Shirt-Men",
+      Category: "Shirt",
+      Color: "Dark Blue",
       Cost: "12.3",
       SaleOff: "50",
       Amount: "10",
@@ -62,10 +62,10 @@ MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     });
     const product2  = new Product({
       _Id: "2",
-      Image: "image2.jpg",
-      Name: "Shirt2",
+      Image: "polo-shirt-2.png",
+      Name: "Polo-Shirt-Men",
       Category: "Shirt",
-      Color: "Green",
+      Color: "Dark Blue",
       Cost: "10.1",
       SaleOff: "30",
       Amount: "10",
@@ -74,17 +74,29 @@ MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     });
     const product3  = new Product({
       _Id: "3",
-      Image: "image3.jpg",
-      Name: "Shirt3",
+      Image: "polo-shirt-3.png",
+      Name: "Polo-Shirt-Men",
       Category: "Shirt",
-      Color: "Brown",
+      Color: "Dark Blue",
       Cost: "10.18",
       SaleOff: "10",
       Amount: "15",
       Describe: "Made in Singapo",
       Size: "XL"
     });
-    collectionProduct.insert([product1,product2,product3], function(err, res){
+    const product4  = new Product({
+      _Id: "4",
+      Image: "polo-shirt-4.png",
+      Name: "Polo-Shirt-Men",
+      Category: "Shirt",
+      Color: "White",
+      Cost: "10.18",
+      SaleOff: "10",
+      Amount: "15",
+      Describe: "Made in Singapo",
+      Size: "XL"
+    });
+    collectionProduct.insert([product1,product2,product3,product4], function(err, res){
       console.log("product is created ")
     });
 

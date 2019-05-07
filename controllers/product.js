@@ -10,3 +10,4 @@ router.get('/all-product', function(req, res,next){
   res.render('all-product', { title: 'Tất cả sản phầm' });
 });
 module.exports = router;
+
