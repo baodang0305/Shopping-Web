@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Product = require('../models/product');
 
 router.get('/login', function(req, res,next){
   res.render('login', { title: 'Đăng nhập và đăng ký' });
