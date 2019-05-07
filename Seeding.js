@@ -4,7 +4,7 @@ const MongoClient = require("mongodb").MongoClient;
 
 //require for Object of mongoose
 const Customer = require('./models/Customer');
-const Product = require('./models/Product');
+const Product = require('./models/product');
 const Cart = require('./models/Cart');
 
 //Connect and Create database to Mongodb Atlas
