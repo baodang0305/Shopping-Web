@@ -4,7 +4,7 @@ module.exports = router;
 
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
-var productModel = require('../models/Product');
+var productModel = require('../models/Product.js');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
 router.get('/', function(req, res,next){
