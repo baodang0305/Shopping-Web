@@ -9,9 +9,9 @@ var flash = require('connect-flash');
 
 //require for routes
 var indexRouter = require('./controllers/index');
-var CustomerRoute = require('./controllers/Customer');
-var ProductRoute = require('./controllers/Product');
-var CartRoute = require('./controllers/Cart');
+var customerRouter = require('./controllers/customer');
+var productRouter = require('./controllers/product');
+var cartRouter = require('./controllers/cart');
 
 var app = express();
 
@@ -65,5 +65,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;
