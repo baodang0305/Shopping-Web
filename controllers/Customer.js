@@ -5,7 +5,7 @@ var router = express.Router();
 // var csrfProtection = csrf();
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
-var CustomerModel = require('../models/Customer');
+var CustomerModel = require('../models/customer');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
 router.get('/login', function(req, res,next){
