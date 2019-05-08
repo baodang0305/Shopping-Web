@@ -9,7 +9,7 @@ var flash = require('connect-flash');
 
 //require for routes
 var indexRouter = require('./controllers/index');
-var customerRouter = require('./controllers/Customer');
+var customerRouter = require('./controllers/customer');
 var productRouter = require('./controllers/product');
 var cartRouter = require('./controllers/cart');
 

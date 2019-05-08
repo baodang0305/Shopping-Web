@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 
 //require for Object of mongoose
-const Customer = require('./models/Customer');
+const Customer = require('./models/customer');
 const Product = require('./models/product');
-const Cart = require('./models/Cart');
+const Cart = require('./models/cart');
 
 //Connect and Create database to Mongodb Atlas
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
