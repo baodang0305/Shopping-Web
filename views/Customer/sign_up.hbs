@@ -4,10 +4,10 @@
 <div class="aa-catg-head-banner-area">
  <div class="container">
   <div class="aa-catg-head-banner-content">
-    <h2>Trang đăng nhập</h2>
+    <h2>Trang đăng ký</h2>
     <ol class="breadcrumb">
       <li><a href="/">Trang chủ</a></li>
-      <li class="active">Trang đăng nhập</li>
+      <li class="active">Trang đăng ký</li>
     </ol>
   </div>
  </div>
@@ -25,37 +25,23 @@
           <div class="col-md-6">
             <div class="aa-myaccount-register">
              <h4>Đăng Ký</h4>
-             <form action="/Customer/signup" class="aa-login-form" method="post">
+             <form action="/signup" class="aa-login-form" method="post">
                <div class="form-group">
                 <label for="">Tên đăng nhập hoặc email<span>*</span></label>
-                <input type="text" placeholder="Username or email">
+                <input type="text" placeholder="Username or email" name="UserName" id="UserName">
               </div>
                <div class="form-group">
                 <label for="">Mật khẩu<span>*</span></label>
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" name="Password" id="Password">
               </div>
               <input type='hidden' name="_csrf" value="{{ csrfToken }}">
                 <button type="submit" class="aa-browse-btn">Đăng Ký</button>
               </form>
-            </div>
-          </div>
-           <div class="col-md-6">
-            <div class="aa-myaccount-login">
-            <h4>Đăng Nhập</h4>
-            <ul>
+              <ul>
               {{# each customersName}}
-                <li>{{ this }}</li>
+                <li>{{this}}</li>
               {{/each}}
-            </ul>
-             <form action="" class="aa-login-form">
-              <label for="">Tên đăng nhập hoặc email<span>*</span></label>
-               <input type="text" placeholder="Username or email">
-               <label for="">Mật khẩu<span>*</span></label>
-                <input type="password" placeholder="Password">
-                <button type="submit" class="aa-browse-btn">Đăng Nhập</button>
-                <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Ghi nhớ đăng nhập </label>
-                <p class="aa-lost-password"><a href="forgotPassword">Quên mật khẩu</a></p>
-              </form>
+              </ul>
             </div>
           </div>
         </div>
