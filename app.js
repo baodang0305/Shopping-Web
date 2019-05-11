@@ -13,8 +13,18 @@ var customerRouter = require('./controllers/customer');
 var productRouter = require('./controllers/product');
 var cartRouter = require('./controllers/cart');
 
+var expHBS = require('express-handlebars');
+var helpers = require('handlebars-helpers')();
+
 var app = express();
 
+var hbs = expHBS.create({   
+    extname: 'hbs',
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'views/layout'),
+    helpers: helpers
+});
+app.engine('hbs', hbs.engine);
 // view engine setup
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
 app.set('view engine', 'hbs');
@@ -35,10 +45,15 @@ app.use(express.static(path.join(__dirname, 'public/images/fashion')));
 app.use(express.static(path.join(__dirname, 'public/images/flag')));
 app.use(express.static(path.join(__dirname, 'public/images/slider')));
 app.use(express.static(path.join(__dirname, 'public/images/slider/ajax-loader.gif')));
-app.use(express.static(path.join(__dirname, 'public/images/man')));
-app.use(express.static(path.join(__dirname, 'public/images/women')));
-app.use(express.static(path.join(__dirname, 'public/images/sports')));
-app.use(express.static(path.join(__dirname, 'public/images/electronics')));
+
+app.use(express.static(path.join(__dirname, 'public/images/man/shirt')));
+app.use(express.static(path.join(__dirname, 'public/images/man/tshirt')));
+
+app.use(express.static(path.join(__dirname, 'public/images/women/tshirt')));
+app.use(express.static(path.join(__dirname, 'public/images/women/shirt')));
+
+app.use(express.static(path.join(__dirname, 'public/images/sport')));
+
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/larger')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/medium')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/thumbnail')));
