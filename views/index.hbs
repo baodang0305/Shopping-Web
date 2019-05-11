@@ -68,10 +68,7 @@
                     <!-- Start men product category -->
                     <div class="tab-pane fade in active" id="men">
                       <ul class="aa-product-catg">
-                        {{#each lproduct}}
-                        {{#eq this.Category 'women'}}
-                            is equal to
-                        {{/eq}}
+                        {{#each men}}
                         <!-- start single product item -->
                         <li>
                           <figure>
@@ -99,6 +96,7 @@
                     <!-- start women product category -->
                     <div class="tab-pane fade" id="women">
                       <ul class="aa-product-catg">
+                        {{#each women}}
                         <!-- start single product item -->
                         <li>
                           <figure>
@@ -116,6 +114,7 @@
                           </div>
                           <!-- product badge -->
                           <span class="aa-badge aa-sale" href="#">SALE!</span>
+                          {{/each}}
                         </li>
                       </ul>
                       <a class="aa-browse-btn" href="all-product">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
@@ -125,6 +124,7 @@
                     <!-- start sports product category -->
                     <div class="tab-pane fade" id="sports">
                       <ul class="aa-product-catg">
+                        {{#each sport}}
                         <!-- start single product item -->
                         <li>
                           <figure>
@@ -142,6 +142,7 @@
                           </div>
                           <!-- product badge -->
                           <span class="aa-badge aa-sale" href="#">SALE!</span>
+                          {{/each}}
                         </li>
                       </ul>
                     </div>

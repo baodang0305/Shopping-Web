@@ -13,21 +13,27 @@ var customerRouter = require('./controllers/customer');
 var productRouter = require('./controllers/product');
 var cartRouter = require('./controllers/cart');
 
-var expHBS = require('express-handlebars');
-var helpers = require('handlebars-helpers')();
+// var helpers = require('handlebars-helpers')();
+var exphbs  = require('express-handlebars');
+
 
 var app = express();
 
-var hbs = expHBS.create({   
-    extname: 'hbs',
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layout'),
-    helpers: helpers
+var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+        foo: function () { return 'FOO!'; },
+        ifEqual: function (arg1, arg2) {
+          return (arg1 == arg2) ? 1 : 0
+        }
+    }
 });
-app.engine('hbs', hbs.engine);
+
 // view engine setup
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'hbs');
+
 
 app.use(logger('dev'));
 app.use(express.json());
