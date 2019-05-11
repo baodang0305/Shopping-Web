@@ -36,7 +36,7 @@ customerSchema.methods.encryptPassword = function(password){
 }
 
 customerSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password)
+  return bcrypt.compareSync(password, this.Password)
 }
 
 const Customer = mongoose.model("Customer", customerSchema);

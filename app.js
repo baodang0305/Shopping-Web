@@ -6,6 +6,9 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var bodyParser = require('body-parser');
+
+require('./config/passport');
 
 //require for routes
 var indexRouter = require('./controllers/index');
@@ -19,12 +22,14 @@ var app = express();
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
 app.set('view engine', 'hbs');
 
-require('./config/passport');
+// require('./config/passport');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({secret: 'mysecret', resave: false, saveUninitialized: false}));
 app.use(flash());
 app.use(passport.initialize());

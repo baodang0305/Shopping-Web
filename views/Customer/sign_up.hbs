@@ -17,36 +17,52 @@
 
 <!-- Cart view section -->
 <section id="aa-myaccount">
-<div class="container">
- <div class="row">
-   <div class="col-md-12">
-    <div class="aa-myaccount-area">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="aa-myaccount-register">
-             <h4>Đăng Ký</h4>
-             <form action="/signup" class="aa-login-form" method="post">
-               <div class="form-group">
-                <label for="">Tên đăng nhập hoặc email<span>*</span></label>
-                <input type="text" placeholder="Username or email" name="UserName" id="UserName">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-myaccount-area">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="aa-myaccount-register">
+                <h4>Đăng Ký</h4>
+                <form action="/signup" class="aa-login-form" method="post">
+                  <div class="form-group">
+                    <label for="">Tên đăng nhập hoặc email<span>*</span></label>
+                    <input type="text" placeholder="Username or email" name="UserName" id="UserName">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Mật khẩu<span>*</span></label>
+                    <input type="password" placeholder="Password" name="Password" id="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Tên của bạn<span>*</span></label>
+                    <input type="text" placeholder="Name" name="Name" id="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Địa chỉ<span>*</span></label>
+                    <input type="text" placeholder="Address" name="Address" id="Address">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Số điện thoại<span>*</span></label>
+                    <input type="text" placeholder="Phone number" name="pnumber" id="pnumber">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Email<span>*</span></label>
+                    <input type="text" placeholder="Email" name="Email" id="Email">
+                  </div>
+                  <input type='hidden' name="_csrf" value="{{ csrfToken }}">
+                  <button type="submit" class="aa-browse-btn">Đăng Ký</button>
+                </form>
+                <ul>
+                  {{# each customersName}}
+                  <li>{{this.UserName}}</li>
+                  {{/each}}
+                </ul>
               </div>
-               <div class="form-group">
-                <label for="">Mật khẩu<span>*</span></label>
-                <input type="password" placeholder="Password" name="Password" id="Password">
-              </div>
-              <input type='hidden' name="_csrf" value="{{ csrfToken }}">
-                <button type="submit" class="aa-browse-btn">Đăng Ký</button>
-              </form>
-              <ul>
-              {{# each customersName}}
-                <li>{{this}}</li>
-              {{/each}}
-              </ul>
             </div>
           </div>
         </div>
-     </div>
-   </div>
- </div>
-</div>
+      </div>
+    </div>
+  </div>
 </section>
