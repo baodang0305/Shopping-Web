@@ -10,22 +10,11 @@ var flash = require('connect-flash');
 //require for routes
 var indexRouter = require('./controllers/index');
 var customerRouter = require('./controllers/customer');
-var productRouter = require('./controllers/product');
+var productRouter = require('./controllers/product/all-product');
+var productDetailRouter = require('./controllers/product/product-detail');
 var cartRouter = require('./controllers/cart');
-
-var expHBS = require('express-handlebars');
-var helpers = require('handlebars-helpers')();
-
 var app = express();
 
-var hbs = expHBS.create({   
-    extname: 'hbs',
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layout'),
-    helpers: helpers
-});
-app.engine('hbs', hbs.engine);
-// view engine setup
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
 app.set('view engine', 'hbs');
 
@@ -63,6 +52,7 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/', indexRouter);
 app.use('/', customerRouter);
 app.use('/', productRouter);
+app.use('/', productDetailRouter);
 app.use('/', cartRouter);
 
 // catch 404 and forward to error handler
