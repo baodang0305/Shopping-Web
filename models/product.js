@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const productSchema = new Schema({
-    _Id: {
-        type: String,
-        required: true
-    },
     Image:{
         type: String,
         required: true
@@ -17,12 +13,13 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    Gender:String,
     Color:String,
     Cost:{
         type: Number,
         required: true
     },
-    SaleOff:Number,
+    Discount:Number,
     Amount:{
         type: Number,
         required: true
@@ -31,7 +28,8 @@ const productSchema = new Schema({
     Size: {
         type: String,
         required: true
-    }
+    },
+    Product_Group: String
 });
 
 const Product = mongoose.model("Product", productSchema);

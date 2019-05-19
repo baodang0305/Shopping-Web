@@ -13,12 +13,15 @@ require('./config/passport');
 //require for routes
 var indexRouter = require('./controllers/index');
 var customerRouter = require('./controllers/customer');
-var productRouter = require('./controllers/product');
+var productRouter = require('./controllers/product/all-product');
+var productDetailRouter = require('./controllers/product/product-detail');
 var cartRouter = require('./controllers/cart');
-
 var app = express();
 
+<<<<<<< HEAD
 // view engine setup
+=======
+>>>>>>> 97c0d7bbe3c7e8e196d117e585062c9a858ffcc7
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
 app.set('view engine', 'hbs');
 
@@ -42,10 +45,15 @@ app.use(express.static(path.join(__dirname, 'public/images/fashion')));
 app.use(express.static(path.join(__dirname, 'public/images/flag')));
 app.use(express.static(path.join(__dirname, 'public/images/slider')));
 app.use(express.static(path.join(__dirname, 'public/images/slider/ajax-loader.gif')));
-app.use(express.static(path.join(__dirname, 'public/images/man')));
-app.use(express.static(path.join(__dirname, 'public/images/women')));
-app.use(express.static(path.join(__dirname, 'public/images/sports')));
-app.use(express.static(path.join(__dirname, 'public/images/electronics')));
+
+app.use(express.static(path.join(__dirname, 'public/images/man/shirt')));
+app.use(express.static(path.join(__dirname, 'public/images/man/tshirt')));
+
+app.use(express.static(path.join(__dirname, 'public/images/women/tshirt')));
+app.use(express.static(path.join(__dirname, 'public/images/women/shirt')));
+
+app.use(express.static(path.join(__dirname, 'public/images/sport')));
+
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/larger')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/medium')));
 app.use(express.static(path.join(__dirname, 'public/images/view-slider/thumbnail')));
@@ -55,6 +63,7 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/', indexRouter);
 app.use('/', customerRouter);
 app.use('/', productRouter);
+app.use('/', productDetailRouter);
 app.use('/', cartRouter);
 
 // catch 404 and forward to error handler
