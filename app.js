@@ -18,10 +18,6 @@ var productDetailRouter = require('./controllers/product/product-detail');
 var cartRouter = require('./controllers/cart');
 var app = express();
 
-<<<<<<< HEAD
-// view engine setup
-=======
->>>>>>> 97c0d7bbe3c7e8e196d117e585062c9a858ffcc7
 app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/cart'), path.join(__dirname, 'views/customer'), path.join(__dirname, 'views/product')]);
 app.set('view engine', 'hbs');
 
