@@ -1,8 +1,4 @@
 var passport = require('passport');
-<<<<<<< HEAD
-=======
-var Customer = require('../models/customer')
->>>>>>> 97c0d7bbe3c7e8e196d117e585062c9a858ffcc7
 var LocalStrategy = require('passport-local').Strategy
 
 const mongoose = require("mongoose");
