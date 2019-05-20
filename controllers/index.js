@@ -1,11 +1,6 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ | Daily shop'});
-=======
 module.exports = router;
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
@@ -34,7 +29,6 @@ router.get('/', function(req, res, next){
       Async_Await();
     }
   });
->>>>>>> 97c0d7bbe3c7e8e196d117e585062c9a858ffcc7
 });
 
 module.exports = router;
