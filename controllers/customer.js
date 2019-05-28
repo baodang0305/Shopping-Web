@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-// var csrf = require('csurf');
+var csrf = require('csurf');
+var passport = require('passport');
+
 // var csrfProtection = csrf();
+// router.use(csrfProtection)
+
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 var CustomerModel = require('../models/customer');
@@ -38,7 +42,14 @@ router.get('/account', function(req, res,next){
   res.render('account', { title: 'Tài khoản' });
 });
 
-router.post('/Customer/signup', function (req, res, next) {
-  res.redirect('/');
-})
+router.get('/signup', function(req, res,next){
+  res.render('sign_up', {title: 'Đăng ký'});
+  // , csrfToken: req.csrfToken()
+});
+
+router.post('/signup', passport.authenticate('local', {
+  successRedirect: '/account',
+  failureRediect:  '/signup',
+  failureFlash: true
+}));
 module.exports = router;

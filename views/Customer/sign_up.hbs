@@ -50,14 +50,10 @@
                     <label for="">Email<span>*</span></label>
                     <input type="text" placeholder="Email" name="Email" id="Email">
                   </div>
-                  <input type='hidden' name="_csrf" value="{{ csrfToken }}">
+                  <input type='hidden' name="_csrf" >
+                  <!-- value="{{ csrfToken }}" -->
                   <button type="submit" class="aa-browse-btn">Đăng Ký</button>
                 </form>
-                <ul>
-                  {{# each customersName}}
-                  <li>{{this.UserName}}</li>
-                  {{/each}}
-                </ul>
               </div>
             </div>
           </div>

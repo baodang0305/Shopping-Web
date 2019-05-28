@@ -7,13 +7,14 @@ var CustomerModel = require('../models/customer');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
 passport.serializeUser(function(customer, done) {
-  done(null, customer.id)
+  done(null, customer)
 });
 
 passport.deserializeUser(function(id, done) {
-  Customer.findById(id, function(err, customer) {
-    done(err, customer);
-  });
+  // CustomerModel.findById(id, function(err, customer) {
+  //   done(err, customer);
+  // });
+  done(null, customer)
 });
 
 passport.use('local', new LocalStrategy({
