@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-module.exports = router;
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 var productModel = require('../../models/product');
