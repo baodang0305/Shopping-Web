@@ -1,3 +1,4 @@
+
 <!-- catg header banner section -->
 <section id="aa-catg-head-banner">
 <img src="fashion-header-bg-8.jpg" alt="fashion img">
@@ -21,11 +22,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="aa-myaccount-area">
+          <form action="/sign-up" class="aa-login-form" method="post">
           <div class="row">
-            <div class="col-md-6">
+            <h4 class="font-weight-bold text-danger">ĐĂNG KÍ</h4>
+            <div class="col-md-5 col-md-offset-1">
               <div class="aa-myaccount-register">
-                <h4>Đăng Ký</h4>
-                <form action="/signup" class="aa-login-form" method="post">
                   <div class="form-group">
                     <label for="">Tên đăng nhập hoặc email<span>*</span></label>
                     <input type="text" placeholder="Username or email" name="UserName" id="UserName">
@@ -38,6 +39,7 @@
                     <label for="">Tên của bạn<span>*</span></label>
                     <input type="text" placeholder="Name" name="Name" id="Name">
                   </div>
+<<<<<<< HEAD:views/Customer/sign_up.hbs
                   <div class="form-group">
                     <label for="">Địa chỉ<span>*</span></label>
                     <input type="text" placeholder="Address" name="Address" id="Address">
@@ -54,9 +56,28 @@
                   <!-- value="{{ csrfToken }}" -->
                   <button type="submit" class="aa-browse-btn">Đăng Ký</button>
                 </form>
+=======
+>>>>>>> e708b42a5ddf346c217c50345c0b8cb23e1fde95:views/Customer/sign-up.hbs
               </div>
             </div>
-          </div>
+            <div class="col-md-5">
+              <div class="aa-myaccount-register">
+                <div class="form-group">
+                  <label for="">Địa chỉ<span>*</span></label>
+                  <input type="text" placeholder="Address" name="Address" id="Address">
+                </div>
+                <div class="form-group">
+                  <label for="">Số điện thoại<span>*</span></label>
+                  <input type="text" placeholder="Phone number" name="pnumber" id="pnumber">
+                </div>
+                <div class="form-group">
+                  <label for="">Email<span>*</span></label>
+                  <input type="text" placeholder="Email" name="Email" id="Email">
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="aa-browse-btn col-sm-offset-5">Đăng Ký</button>
+          </form>
         </div>
       </div>
     </div>

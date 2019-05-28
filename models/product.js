@@ -14,7 +14,6 @@ const productSchema = new Schema({
         required: true
     },
     Gender:String,
-    Color:String,
     Cost:{
         type: Number,
         required: true
@@ -25,10 +24,6 @@ const productSchema = new Schema({
         required: true
     },
     Describe: String,
-    Size: {
-        type: String,
-        required: true
-    },
     Product_Group: String
 });
 
