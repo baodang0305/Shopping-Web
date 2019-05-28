@@ -36,6 +36,17 @@
 */
 
 /* BASE - Base tyles, Variables, Mixins, etc. */
+
+.note{
+  color: red !important;
+  font-size: 12px !important;
+  margin-top: 2px !important;
+}
+
+.passwordBox{
+  margin-bottom: 0px !important;
+}
+
 body {
   background-color: #ffffff;
   font-family: "Lato", sans-serif;
