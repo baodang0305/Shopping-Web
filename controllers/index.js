@@ -1,14 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var csrf = require('csurf');
 
-module.exports = router;
+var csrfProtection = csrf();
+router.use(csrfProtection);
+
 const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 var productModel = require('../models/product');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+
 router.get('/', function(req, res, next){
   var noMatch = null;
-  
   MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
     if(err){
       console.log(err);

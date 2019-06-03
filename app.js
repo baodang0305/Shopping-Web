@@ -7,23 +7,22 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const validator = require('express-validator');
 
 require('./config/passport');
 
 //require for routes
 const indexRouter = require('./controllers/index');
-const signupRouter = require('./controllers/customer/sign-up');
-const forgotPasswordRouter = require('./controllers/customer/forgot-password');
-const accountDetailRouter = require('./controllers/customer/account-detail');
+const customerRouter = require('./controllers/customer');
 const productRouter = require('./controllers/product/all-product');
 const productDetailRouter = require('./controllers/product/product-detail');
 const cartRouter = require('./controllers/cart');
 const app = express();
 
 app.set('views', [
-  path.join(__dirname, 'views'), 
-  path.join(__dirname, 'views/cart'), 
-  path.join(__dirname, 'views/customer'), 
+  path.join(__dirname, 'views'),
+  path.join(__dirname, 'views/cart'),
+  path.join(__dirname, 'views/customer'),
   path.join(__dirname, 'views/product')
 ]);
 
@@ -34,8 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(session({secret: 'mysecret', resave: false, saveUninitialized: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(validator());
+app.use(session({secret: 'mysecret', resave: true, saveUninitialized: true}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,9 +58,7 @@ app.use('/', indexRouter);
 app.use('/', productRouter);
 app.use('/', productDetailRouter);
 app.use('/', cartRouter);
-app.use('/', signupRouter);
-app.use('/', forgotPasswordRouter);
-app.use('/', accountDetailRouter);
+app.use('/', customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

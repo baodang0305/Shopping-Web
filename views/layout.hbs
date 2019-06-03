@@ -96,7 +96,9 @@
                 <!-- / header top left -->
                 <div class="aa-header-top-right">
                   <ul class="aa-head-top-nav-right">
-                    <li><a href="account-detail">Tài khoản của tôi</a></li>
+                    {{#if isLogin}}
+                    <li><a href="account-detail">{{username}}</a></li>
+                    {{/if}}
                     <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
                     <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
                   </ul>
@@ -325,16 +327,17 @@
           <div class="modal-body">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4>Đăng Nhập</h4>
-            <form class="aa-login-form" action="/">
-              <label for="">Tên đăng nhập hoặc Email<span>*</span></label>
-              <input type="text" placeholder="Username or email">
+            <form class="aa-login-form" action="signin" method="post">
+              <label for="">Tên đăng nhập<span>*</span></label>
+              <input type="text" placeholder="Username" name="UserName" id="UserName">
               <label for="">Mậu khẩu<span>*</span></label>
-              <input type="password" placeholder="Password">
+              <input type="password" placeholder="Password" name="Password" id="Password">
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
               <button class="aa-browse-btn" type="submit" action="register">Đăng Nhập</button>
               <p><label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Ghi nhớ tài khoản </label></p>
               <p class="aa-lost-password"><a href="forgot-password">quên mật khẩu?</a></p>
               <div class="aa-register-now">
-                Bạn đã có tài khoản chưa?<a href="sign-up">Đăng kí ngay!</a>
+                Bạn đã có tài khoản chưa?<a href="signup">Đăng kí ngay!</a>
               </div>
             </form>
           </div>

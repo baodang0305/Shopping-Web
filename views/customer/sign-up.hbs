@@ -22,23 +22,30 @@
     <div class="row">
       <div class="col-md-12">
         <div class="aa-myaccount-area">
-          <form action="/sign-up" class="aa-login-form" method="post">
+          <form action="signup" class="aa-login-form" method="post">
+            {{#if hasErrors}}
+              <div class="alert alert-danger">
+                {{# each messages}}
+                  <p>{{this}}</p>
+                {{/each}}
+              </div>
+            {{/if}}
           <div class="row">
             <h4 class="font-weight-bold text-danger">ĐĂNG KÍ</h4>
             <div class="col-md-5 col-md-offset-1">
               <div class="aa-myaccount-register">
                   <div class="form-group">
                     <label for="">Tên đăng nhập hoặc email<span>(*)</span><span class="node" id="errMessUsername"></span></label>
-                    <input type="text" placeholder="Username or email" name="Username" id="Username" onkeyup="checkUsername();">
+                    <input type="text" placeholder="Username or email" name="UserName" id="UserName" onkeyup="checkUsername();">
                   </div>
                   <div class="form-group">
                     <label for="">Mật khẩu<span>(*)</span><span class="node" id="errMessPassword"></span></label>
                     <input class="passwordBox" type="password" placeholder="Password" name="Password" id="Password" onkeyup="checkPassword();">
                     <label class="note">ít nhất 10, nhiều nhất 20 kí tự, có kí tự viết hoa, có chữ số. </label>
                   </div>
-                 
+
                   <div class="form-group">
-                    <label for="">Tên của bạn<span>(*)</span><span class="node" id="errMessName"></span></label>
+                    <label for="">Tên của bạn<span class="node" id="errMessName"></span></label>
                     <input type="text" placeholder="Name" name="Name" id="Name" onkeyup="checkName();">
                   </div>
               </div>
@@ -46,19 +53,20 @@
             <div class="col-md-5">
               <div class="aa-myaccount-register">
                 <div class="form-group">
-                  <label for="">Địa chỉ<span>(*)</span><span class="node" id="errMessAddress"></span></label>
+                  <label for="">Địa chỉ<span class="node" id="errMessAddress"></span></label>
                   <input type="text" placeholder="Address" name="Address" id="Address" onkeyup="checkAddress();">
                 </div>
                 <div class="form-group">
-                  <label for="">Số điện thoại<span>(*)</span><span class="node" id="errMessPhoneNumber"></span></label>
+                  <label for="">Số điện thoại<span class="node" id="errMessPhoneNumber"></span></label>
                   <input type="text" placeholder="Phone number" name="PhoneNumber" id="PhoneNumber" onkeyup="checkPhoneNumber();">
                 </div>
                 <div class="form-group">
-                  <label for="">Email<span>(*)</span><span class="node" id="errMessEmail"></span></label>
+                  <label for="">Email<span class="node" id="errMessEmail"></span></label>
                   <input type="text" placeholder="Email" name="Email" id="Email" onkeyup="checkEmail();">
                 </div>
               </div>
             </div>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             <button type="submit" class="aa-browse-btn col-sm-offset-5">Đăng Ký</button>
           </form>
         </div>
