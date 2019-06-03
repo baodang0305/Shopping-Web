@@ -26,7 +26,7 @@ router.get('/', function(req, res, next){
         let list_product_feature = await collectionProduct.find({Product_Group: 'Feature'}).toArray();
         let list_product_new = await collectionProduct.find({Product_Group: 'New'}).toArray();
         if (req.user) {
-          res.render('index', { csrfToken: req.csrfToken(), username: req.user.Username, isLogin: true, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
+          res.render('index', { csrfToken: req.csrfToken(), user: req.user, isLogin: true, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
                                                    'list_product_sport': list_product_sport,'list_product_popular': list_product_popular,
                                                    'list_product_feature': list_product_feature, 'list_product_new': list_product_new});
         } else {

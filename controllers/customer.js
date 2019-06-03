@@ -16,7 +16,8 @@ router.get('/forgotPassword', function(req, res, next){
 });
 
 router.get('/account-detail', function(req, res,next){
-  res.render('account-detail', { title: 'Tài khoản' });
+  let user = req.user;
+  res.render('account-detail', {user: user, title: 'Tài khoản' });
 });
 
 router.get('/signup', function(req, res,next){
@@ -25,7 +26,7 @@ router.get('/signup', function(req, res,next){
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-  successRedirect: '/account',
+  successRedirect: '/account-detail',
   failureRedirect: '/signup',
   failureFlash: true
 }));

@@ -8,7 +8,7 @@ module.exports = function CustomerModel() {
   this.Phonenumber = 0
   this.Email = ""
   this.signup = function (username, password) {
-    this.Password = bcrypt.hashSync(password, bcrypt.getSaltSync(10), null);
+    this.Password = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
     this.Username = username
   }
   this.login = function (username, password) {
@@ -17,9 +17,7 @@ module.exports = function CustomerModel() {
     }
     return false
   }
-  this.addInfo = function (username, password, name, address, phoneNumber, email) {
-    this.Username = username
-    this.Password = password
+  this.addInfo = function (name, address, phoneNumber, email) {
     this.Name = name
     this.Address = address
     this.Phonenumber = phoneNumber

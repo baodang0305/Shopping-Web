@@ -58,7 +58,12 @@ passport.use('local.signup', new LocalStrategy({
            return done(null, false, {message: "Tên này đã có người sử dụng"});
           }
           let newCustomer = new CustomerModel();
+          let name = req.body.Name;
+          let address = req.body.Address;
+          let phone = Number(req.body.PhoneNumber) || 0;
+          let email = req.body.Email;
           newCustomer.signup(username, password);
+          newCustomer.addInfo(name, address, phone, email);
           collectionCustomer.insert(newCustomer, function(err, client) {
             if (err) {
               return done(null, false, {message: "Không thể kết nối"});
