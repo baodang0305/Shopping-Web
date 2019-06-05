@@ -6,11 +6,6 @@ var passport = require('passport');
 var csrfProtection = csrf();
 router.use(csrfProtection)
 
-const mongoose = require("mongoose");
-const MongoClient = require("mongodb").MongoClient;
-var CustomerModel = require('../models/customer');
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
-
 router.get('/forgotPassword', function(req, res, next){
   res.render('forgot-password', { title: 'Quên mật khầu' });
 });
@@ -33,7 +28,8 @@ router.post('/signup', passport.authenticate('local.signup', {
 
 router.post('/signin', passport.authenticate('local.signin', {
   successRedirect: '/',
-  failureRedirect: '/signup'
+  failureRedirect: '/signup',
+  failureFlash: true
 }))
 
 module.exports = router;
