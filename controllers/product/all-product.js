@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require("mongoose");
+// var csrf = require('csurf');
+//
+//
+// var csrfProtection = csrf();
+// router.use(csrfProtection);
+
 const MongoClient = require("mongodb").MongoClient;
-var productModel = require('../../models/product');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+
 router.get('/all-product-:id', function(req, res, next){
   var id = req.params.id;
 
@@ -36,7 +41,7 @@ router.get('/all-product-:id', function(req, res, next){
 
         dbRef.close();
 
-        res.render('all-product', {title: 'All Product Women', isLogin: Boolean(req.user), user: req.user, 'list_all_product': list_all_product});
+        res.render('all-product', { title: 'All Product Women', isLogin: Boolean(req.user), user: req.user, 'list_all_product': list_all_product});
       })();
     }
   });

@@ -3,8 +3,6 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
-var csrfProtection = csrf();
-router.use(csrfProtection)
 
 router.get('/forgotPassword', function(req, res, next){
   res.render('forgot-password', { title: 'Quên mật khầu', isLogin: Boolean(req.user), user: req.user });
@@ -16,7 +14,7 @@ router.get('/account-detail', function(req, res,next){
 
 router.get('/signup', function(req, res,next){
   var messages = req.flash('error');
-  res.render('sign-up', {title: 'Đăng ký', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+  res.render('sign-up', {title: 'Đăng ký', messages: messages, hasErrors: messages.length > 0});
 });
 
 router.post('/signup', passport.authenticate('local.signup', {

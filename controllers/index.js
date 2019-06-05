@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var csrf = require('csurf');
 
-var csrfProtection = csrf();
-router.use(csrfProtection);
 
 const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
@@ -49,7 +46,7 @@ router.get('/', function(req, res, next){
 
           dbRef.close();
 
-          res.render('index', {csrfToken: req.csrfToken(), isLogin: Boolean(req.user), user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
+          res.render('index', { isLogin: Boolean(req.user), user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
                                                    'list_product_sport': list_product_sport,'list_product_popular': list_product_popular,
                                                    'list_product_feature': list_product_feature, 'list_product_new': list_product_new});
         }
