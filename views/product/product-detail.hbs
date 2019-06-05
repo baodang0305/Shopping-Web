@@ -1,11 +1,10 @@
-
 <!-- product category -->
   <section id="aa-product-details">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="aa-product-details-area">
-            {{#each product_detail}}
+           
             <div class="aa-product-details-content">
               <div class="row">
                 <!-- Modal view slider -->
@@ -14,7 +13,7 @@
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
                         <div class="simpleLens-big-image-container">
-                          <img src="{{this.Image}}" class="simpleLens-big-image">
+                          <img src="https://murmuring-refuge-68667.herokuapp.com/{{product_detail.Image}}" class="simpleLens-big-image">
                         </div>
                       </div>
                     </div>
@@ -23,19 +22,19 @@
                 <!-- Modal view content -->
                 <div class="col-md-7 col-sm-7 col-xs-12">
                   <div class="aa-product-view-content">
-                    <h3>{{this.Name}}</h3>
+                    <h3>{{product_detail.Name}}</h3>
                     <div class="aa-price-block">
-                      <span class="aa-product-view-price">${{this.Cost}}</span>
+                      <span class="aa-product-view-price">${{product_detail.Cost}}</span>
                       <p class="aa-product-avilability">Tình trạng:  <span>Còn sản phẩm</span></p>
                     </div>
-                    <h4>{{this.Size}}</h4>
+                    <h4>{{product_detail.Size}}</h4>
                     <div class="aa-prod-view-size">
                       <a href="#">S</a>
                       <a href="#">M</a>
                       <a href="#">L</a>
                       <a href="#">XL</a>
                     </div>
-                    <h4>{{this.Color}}</h4>
+                    <h4>{{product_detail.Color}}</h4>
                     <div class="aa-color-tag">
                       <a href="#" class="aa-color-green"></a>
                       <a href="#" class="aa-color-yellow"></a>
@@ -55,7 +54,7 @@
                         </select>
                       </form>
                       <p class="aa-prod-category">
-                        Thể Loại: <a href="#">{{this.Category}}</a>
+                        Thể Loại: <a href="#">{{product_detail.Category}}</a>
                       </p>
                     </div>
                     <div class="aa-prod-view-bottom">
@@ -77,7 +76,7 @@
                 <div class="tab-pane fade in active" id="description">
                   <p>Mô tả thông tin sản phẩm</p>
                   <ul>
-                    <li>{{this.Describe}}</li>
+                    <li>{{product_detail.Describe}}</li>
                   </ul>
                 </div>
                 <div class="tab-pane fade " id="review">
@@ -155,16 +154,16 @@
                 </div>            
               </div>
             </div>
-            {{/each}}
+            
             <!-- Related product -->
             <div class="aa-product-related-item">
               <h3>Sản Phẩm Liên Quan</h3>
               <ul class="aa-product-catg aa-related-item-slider">
                 <!-- start single product item -->
-                {{#each all_product}}
+                {{#each all_product_related}}
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="{{this.Image}}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://murmuring-refuge-68667.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                     <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Thêm Vào Giỏ Hàng</a>
                      <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{this.Name}}</a></h4>

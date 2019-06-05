@@ -1,9 +1,7 @@
 var express = require('express');
 var ObjectId = require('mongodb').ObjectId;
 var router = express.Router();
-const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
-var productModel = require('../../models/product');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 router.get('/product-detail-:id', function(req, res, next){
   var id = req.params.id;
@@ -15,9 +13,10 @@ router.get('/product-detail-:id', function(req, res, next){
     else{
       const collectionProduct = client.db("shoppingdb").collection("Product");
       let Async_Await = async()=>{
-        let product_detail = await collectionProduct.find({_id: object_id}).toArray();
-        let all_product = await collectionProduct.find({}).toArray();
-        res.render('product-detail', {title: 'Product Detail', 'product_detail': product_detail, 'all_product': all_product});
+        let product_detail = await collectionProduct.findOne({_id: object_id});
+        let all_product_related = await collectionProduct.find({Category: product_detail.Category, Gender: product_detail.Gender}).toArray();
+        client.close();
+        res.render('product-detail', {title: 'Product Detail', 'product_detail': product_detail, 'all_product_related': all_product_related});
       }
       Async_Await();
     }
