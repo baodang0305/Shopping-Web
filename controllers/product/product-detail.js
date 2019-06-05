@@ -20,7 +20,7 @@ router.get('/product-detail-:id', function(req, res, next){
 
         dbRef.close();
 
-        res.render('product-detail', {title: 'Product Detail', 'product_detail': product_detail, 'all_product': all_product});
+        res.render('product-detail', {title: 'Product Detail', isLogin: Boolean(req.user), user: req.user, 'product_detail': product_detail, 'all_product': all_product});
       })();
     }
   });

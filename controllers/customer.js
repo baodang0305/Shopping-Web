@@ -7,12 +7,11 @@ var csrfProtection = csrf();
 router.use(csrfProtection)
 
 router.get('/forgotPassword', function(req, res, next){
-  res.render('forgot-password', { title: 'Quên mật khầu' });
+  res.render('forgot-password', { title: 'Quên mật khầu', isLogin: Boolean(req.user), user: req.user });
 });
 
 router.get('/account-detail', function(req, res,next){
-  let user = req.user;
-  res.render('account-detail', {user: user, title: 'Tài khoản' });
+  res.render('account-detail', {title: 'Tài khoản', isLogin: Boolean(req.user), user: req.user });
 });
 
 router.get('/signup', function(req, res,next){

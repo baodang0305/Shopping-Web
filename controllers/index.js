@@ -20,12 +20,6 @@ router.get('/', function(req, res, next){
       console.log("Successfully connected");
       const collectionProduct = dbRef.db("shoppingdb").collection("Product");
 
-      var isLogin = false
-      if (req.user) {
-        isLogin = true
-      }
-      console.log(req.user)
-
       if(req.query.strSearch){
         console.log(req.query.strSearch);
         const regex = new RegExp(escape(req.query.strSearch), 'gi');
@@ -55,7 +49,7 @@ router.get('/', function(req, res, next){
 
           dbRef.close();
 
-          res.render('index', {csrfToken: req.csrfToken(), isLogin: isLogin, user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
+          res.render('index', {csrfToken: req.csrfToken(), isLogin: Boolean(req.user), user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
                                                    'list_product_sport': list_product_sport,'list_product_popular': list_product_popular,
                                                    'list_product_feature': list_product_feature, 'list_product_new': list_product_new});
         }

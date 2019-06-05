@@ -6,6 +6,8 @@ var productModel = require('../../models/product');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 router.get('/all-product-:id', function(req, res, next){
   var id = req.params.id;
+
+
   MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, dbRef) {
     if(err){
       console.log(err);
@@ -34,7 +36,7 @@ router.get('/all-product-:id', function(req, res, next){
 
         dbRef.close();
 
-        res.render('all-product', {title: 'All Product Women', 'list_all_product': list_all_product});
+        res.render('all-product', {title: 'All Product Women', isLogin: Boolean(req.user), user: req.user, 'list_all_product': list_all_product});
       })();
     }
   });
