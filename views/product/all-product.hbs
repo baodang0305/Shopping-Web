@@ -13,7 +13,6 @@
    </div>
   </section>
   <!-- / catg header banner section -->
-
   <!-- product category -->
   <section id="aa-product-category">
     <div class="container">
@@ -46,12 +45,13 @@
               </div>
             </div>
             <div class="aa-product-catg-body">
+              <h3 class="text-center text-font-color-pink">{{this.mess}}</h3> 
               <ul class="aa-product-catg">
                 {{#each list_all_product}}
                 <!-- start single product item -->
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="{{this.Image}}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://murmuring-refuge-68667.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                     <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Thêm Vào Giỏ Hàng</a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{this.Name}}</a></h4>
