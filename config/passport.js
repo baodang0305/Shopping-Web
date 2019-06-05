@@ -101,7 +101,7 @@ passport.use('local.signup', new LocalStrategy({
               return done(null, false, {message: "Không thể kết nối"});
             }
             if (!client) {
-             return done(null, false, {message: "Không tìm thấy người dùng"});
+             return done(null, false, {message: "Bạn chưa có tài khoản, hãy đăng ký"});
             }
             let customerModel = new CustomerModel(client);
             customerModel.Username = client.Username;

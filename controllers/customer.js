@@ -32,4 +32,9 @@ router.post('/signin', passport.authenticate('local.signin', {
   failureFlash: true
 }))
 
+router.get('/signout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 module.exports = router;

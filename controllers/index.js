@@ -19,25 +19,33 @@ router.get('/', function(req, res, next){
     else{
       console.log("Successfully connected");
       const collectionProduct = dbRef.db("shoppingdb").collection("Product");
+
+      var isLogin = false
+      if (req.user) {
+        isLogin = true
+      }
+      console.log(req.user)
+
       if(req.query.strSearch){
         console.log(req.query.strSearch);
         const regex = new RegExp(escape(req.query.strSearch), 'gi');
         console.log(regex);
-          let Async_Await = async()=>{
+          const Async_Await = async()=>{
           let list_all_product = await collectionProduct.find({Name: regex}).toArray();
 
           dbRef.close();
 
           console.log(list_all_product);
           if(list_all_product.length < 1){
-            noMatch = "No results you want to find";
+            noMatch = "Không có sản phẩm";
 
           }
           res.render('all-product', {title: "Sản Phẩm", 'mess': noMatch, 'list_all_product': list_all_product});
         }
+        Async_Await();
       }
       else{
-        let Async_Await = async()=>{
+        const Async_Await = async()=>{
           let list_product_man = await collectionProduct.find({Gender: 'Man', }).limit(8).toArray();
           let list_product_women = await collectionProduct.find({Gender: 'Women'}).limit(8).toArray();
           let list_product_sport = await collectionProduct.find({Category: 'Sport'}).limit(8).toArray();
@@ -47,14 +55,13 @@ router.get('/', function(req, res, next){
 
           dbRef.close();
 
-          res.render('index', {title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
+          res.render('index', {csrfToken: req.csrfToken(), isLogin: isLogin, user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
                                                    'list_product_sport': list_product_sport,'list_product_popular': list_product_popular,
                                                    'list_product_feature': list_product_feature, 'list_product_new': list_product_new});
         }
+
+        Async_Await();
       }
-
-      Async_Await();
-
     }
   });
 });
