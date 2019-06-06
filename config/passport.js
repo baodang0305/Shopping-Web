@@ -1,9 +1,9 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
-const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
+
+const saltRounds = 10;
 var CustomerModel = require('../models/customer');
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
@@ -12,12 +12,15 @@ passport.serializeUser(function(customer, done) {
 });
 
 passport.deserializeUser(function(username, done) {
-  MongoClient.connect(uri, { useNewUrlParser: true}, function(err, client){
+  MongoClient.connect(uri, { useNewUrlParser: true}, function(err, dbRef){
     if (err) {
       return done(null, false, {message: "Không thể kết nối"})
     } else {
-      let collectionCustomer = client.db("shoppingdb").collection("Customer");
+      let collectionCustomer = dbRef.db("shoppingdb").collection("Customer");
       collectionCustomer.findOne({Username: username}, function(err, client){
+
+        dbRef.close();
+
         if (err) {
           done(null, false, {message: "Không thể kết nối"})
         }
@@ -35,6 +38,8 @@ passport.use('local.signup', new LocalStrategy({
   passwordField: 'Password',
   passReqToCallback: true
 }, function(req, username, password, done) {
+
+    // validate with express validator
     req.checkBody('UserName', 'Tên đăng nhập chưa hợp lệ').notEmpty();
     req.checkBody('Password', 'Mật khẩu chưa hợp lệ').notEmpty().isLength({min: 10, max: 20});
     var errors = req.validationErrors();
@@ -45,12 +50,16 @@ passport.use('local.signup', new LocalStrategy({
       });
       return done(null, false, req.flash('error', messages));
     }
-    MongoClient.connect(uri, { useNewUrlParser: true}, function(err , client) {
+
+    MongoClient.connect(uri, { useNewUrlParser: true}, function(err , dbRef) {
       if (err) {
         return done(null, false, {message: "Không thể kết nối"});
       } else {
-        let collectionCustomer = client.db("shoppingdb").collection("Customer");
+        let collectionCustomer = dbRef.db("shoppingdb").collection("Customer");
         collectionCustomer.findOne({Username: username}, function(err, client) {
+
+          dbRef.close();
+
           if (err) {
             return done(null, false, {message: "Không thể kết nối"});
           }
@@ -79,18 +88,20 @@ passport.use('local.signup', new LocalStrategy({
     usernameField: 'UserName',
     passwordField: 'Password'
   }, function(username, password, done) {
-      MongoClient.connect(uri, { useNewUrlParser: true}, function(err , client) {
-        console.log('connect')
+      MongoClient.connect(uri, { useNewUrlParser: true}, function(err , dbRef) {
         if (err) {
           return done(null, false, {message: "Không thể kết nối"});
         } else {
-          let collectionCustomer = client.db("shoppingdb").collection("Customer");
+          let collectionCustomer = dbRef.db("shoppingdb").collection("Customer");
           collectionCustomer.findOne({Username: username}, function(err, client) {
+
+            dbRef.close();
+
             if (err) {
               return done(null, false, {message: "Không thể kết nối"});
             }
             if (!client) {
-             return done(null, false, {message: "Không tìm thấy người dùng"});
+             return done(null, false, {message: "Bạn chưa có tài khoản, hãy đăng ký"});
             }
             let customerModel = new CustomerModel(client);
             customerModel.Username = client.Username;

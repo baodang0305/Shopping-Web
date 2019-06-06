@@ -4,16 +4,16 @@
       <div class="row">
         <div class="col-md-12">
           <div class="aa-product-details-area">
-           
+
             <div class="aa-product-details-content">
               <div class="row">
                 <!-- Modal view slider -->
-                <div class="col-md-5 col-sm-5 col-xs-12">                              
-                  <div class="aa-product-view-slider">                                
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                  <div class="aa-product-view-slider">
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
                         <div class="simpleLens-big-image-container">
-                          <img src="https://murmuring-refuge-68667.herokuapp.com/{{product_detail.Image}}" class="simpleLens-big-image">
+                          <img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" class="simpleLens-big-image">
                         </div>
                       </div>
                     </div>
@@ -38,9 +38,9 @@
                     <div class="aa-color-tag">
                       <a href="#" class="aa-color-green"></a>
                       <a href="#" class="aa-color-yellow"></a>
-                      <a href="#" class="aa-color-pink"></a>                      
+                      <a href="#" class="aa-color-pink"></a>
                       <a href="#" class="aa-color-black"></a>
-                      <a href="#" class="aa-color-white"></a>                      
+                      <a href="#" class="aa-color-white"></a>
                     </div>
                     <div class="aa-prod-quantity">
                       <form action="">
@@ -68,7 +68,7 @@
             <div class="aa-product-details-bottom">
               <ul class="nav nav-tabs" id="myTab2">
                 <li><a href="#description" data-toggle="tab">Mô Tả</a></li>
-                <li><a href="#review" data-toggle="tab">Đánh Giá</a></li>                
+                <li><a href="#review" data-toggle="tab">Đánh Giá</a></li>
               </ul>
 
               <!-- Tab panes -->
@@ -79,82 +79,56 @@
                     <li>{{product_detail.Describe}}</li>
                   </ul>
                 </div>
+                {{/each}}
                 <div class="tab-pane fade " id="review">
                  <div class="aa-product-review-area">
-                   <h4>2 đánh giá cho T-Shirt</h4> 
+                   <h4>{{related_comment.length}} đánh giá cho T-Shirt</h4>
                    <ul class="aa-review-nav">
                      <li>
                         <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="testimonial-img-3.jpg" alt="girl image">
-                            </a>
-                          </div>
                           <div class="media-body">
-                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
                             <div class="aa-product-rating">
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star-o"></span>
+                              {{#each starList}}
+                                <span class="fa fa-star{{this}}"></span>
+                              {{/each}}
                             </div>
-                            <p>Hàng đẹp, chất lượng tốt, nhưng giao hàng chậm trễ quá nha.</p>
+                            <h4 class="media-heading"><strong>{{#each related_comment}}
+                              {{this.Username}}
+                            </strong> - <span>{{this.Time}}</span></h4>
+                            <p>{{this.Text}}</p>
                           </div>
                         </div>
                       </li>
-                      <li>
-                        <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="testimonial-img-3.jpg" alt="girl image">
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
-                            <div class="aa-product-rating">
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star-o"></span>
-                            </div>
-                            <p>Mẫu mã đẹp nhưng chất lượng vãi còn tệ.</p>
-                          </div>
-                        </div>
-                      </li>
+                      {{/each}}
                    </ul>
                    <h4>Thêm Đánh Giá</h4>
-                   <div class="aa-your-rating">
-                     <p>Đánh giá của bạn</p>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                   </div>
+                   {{#each product_detail}}
                    <!-- review form -->
-                   <form action="" class="aa-review-form">
+                   <form action="/add-review" class="aa-review-form" method="post">
+                     <div class="aa-your-rating">
+                       <p>Đánh giá của bạn</p>
+                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="1" /></span>
+                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="2" /></span>
+                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="3" /></span>
+                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="4" /></span>
+                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="5" /></span>
+                     </div>
                       <div class="form-group">
                         <label for="message">Đánh giá của bạn</label>
-                        <textarea class="form-control" rows="3" id="message"></textarea>
+                        <textarea class="form-control" rows="3" id="message" name="Message"></textarea>
                       </div>
                       <div class="form-group">
                         <label for="name">Họ tên</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name">
-                      </div>  
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                        <input type="text" class="form-control" id="name" placeholder="Name" name="Name">
                       </div>
-
+                      <input type="hidden" name="Product" value="{{ this._id }}">
                       <button type="submit" class="btn btn-default aa-review-submit">Gửi</button>
                    </form>
+                   {{/each}}
                  </div>
-                </div>            
+                </div>
               </div>
             </div>
-            
             <!-- Related product -->
             <div class="aa-product-related-item">
               <h3>Sản Phẩm Liên Quan</h3>
@@ -163,24 +137,24 @@
                 {{#each all_product_related}}
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://murmuring-refuge-68667.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                     <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Thêm Vào Giỏ Hàng</a>
                      <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{this.Name}}</a></h4>
                       <span class="aa-product-price">${{this.Discount}}</span><span class="aa-product-price"><del>${{this.Cost}}</del></span>
                     </figcaption>
-                  </figure>                     
+                  </figure>
                   <div class="aa-product-hvr-content">
                     <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                     <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
+                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                   </div>
                   <!-- product badge -->
                   <span class="aa-badge aa-sale" href="#">SALE!</span>
-                </li>     
-                {{/each}}                                                               
+                </li>
+                {{/each}}
               </ul>
-            </div>  
+            </div>
           </div>
         </div>
       </div>

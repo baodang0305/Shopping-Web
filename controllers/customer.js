@@ -3,26 +3,18 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
-var csrfProtection = csrf();
-router.use(csrfProtection)
-
-const mongoose = require("mongoose");
-const MongoClient = require("mongodb").MongoClient;
-var CustomerModel = require('../models/customer');
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
 
 router.get('/forgotPassword', function(req, res, next){
-  res.render('forgot-password', { title: 'Quên mật khầu' });
+  res.render('forgot-password', { title: 'Quên mật khầu', isLogin: Boolean(req.user), user: req.user });
 });
 
 router.get('/account-detail', function(req, res,next){
-  let user = req.user;
-  res.render('account-detail', {user: user, title: 'Tài khoản' });
+  res.render('account-detail', {title: 'Tài khoản', isLogin: Boolean(req.user), user: req.user });
 });
 
 router.get('/signup', function(req, res,next){
   var messages = req.flash('error');
-  res.render('sign-up', {title: 'Đăng ký', csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+  res.render('sign-up', {title: 'Đăng ký', messages: messages, hasErrors: messages.length > 0});
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
@@ -33,7 +25,13 @@ router.post('/signup', passport.authenticate('local.signup', {
 
 router.post('/signin', passport.authenticate('local.signin', {
   successRedirect: '/',
-  failureRedirect: '/signup'
+  failureRedirect: '/signup',
+  failureFlash: true
 }))
+
+router.get('/signout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;

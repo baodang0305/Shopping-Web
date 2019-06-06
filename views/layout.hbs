@@ -24,6 +24,8 @@
     <!-- Top Slider CSS -->
     <link href="sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
     <!-- Main style sheet -->
     <link href="style.css" rel="stylesheet">
 
@@ -97,10 +99,13 @@
                 <div class="aa-header-top-right">
                   <ul class="aa-head-top-nav-right">
                     {{#if isLogin}}
-                    <li><a href="account-detail">{{username}}</a></li>
-                    {{/if}}
+                    <li><a href="account-detail">{{user.Username}}</a></li>
+                    <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
+                    <li><a href="signout">Đăng xuất</a></li>
+                    {{else}}
                     <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
                     <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                    {{/if}}
                   </ul>
                 </div>
               </div>
@@ -333,7 +338,7 @@
               <label for="">Mậu khẩu<span>*</span></label>
               <input type="password" placeholder="Password" name="Password" id="Password">
               <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-              <button class="aa-browse-btn" type="submit" action="register">Đăng Nhập</button>
+              <button class="aa-browse-btn" type="submit">Đăng Nhập</button>
               <p><label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Ghi nhớ tài khoản </label></p>
               <p class="aa-lost-password"><a href="forgot-password">quên mật khẩu?</a></p>
               <div class="aa-register-now">
