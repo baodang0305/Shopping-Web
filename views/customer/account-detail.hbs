@@ -22,22 +22,31 @@
     <div class="row">
       <div class="col-md-12">
         <div class="aa-myaccount-area">
-          <form action="/signup" class="aa-login-form" method="post">
+          <form action="/account-detail" class="aa-login-form" method="post">
           <div class="row">
             <h4 class="font-weight-bold text-danger">Thông Tin Chi Tiết</h4>
+            {{#if mess}}
+            <div class="form-group color-red">
+              <input type="text" value="{{mess}}" readonly>
+            </div>
+            {{/if}}
             <div class="col-md-5 col-md-offset-1">
               <div class="aa-myaccount-register">
                   <div class="form-group">
                     <label for="">Tên đăng nhập hoặc email</label>
-                    <input type="text" placeholder="{{user.Username}}" name="UserName" id="UserName">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Mật khẩu</label>
-                    <input type="password" placeholder="****" name="Password" id="Password">
+                    <input type="text" placeholder="{{user.Username}}" name="Username">
                   </div>
                   <div class="form-group">
                     <label for="">Tên của bạn</label>
-                    <input type="text" placeholder="{{user.Name}}" name="Name" id="Name">
+                    <input type="text" placeholder="{{user.Name}}" name="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Mật khẩu</label>
+                    <input type="password" placeholder="******" name="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Xác nhận lại mật khẩu</label>
+                    <input type="password" placeholder="******" name="Confirm">
                   </div>
               </div>
             </div>
@@ -45,18 +54,19 @@
               <div class="aa-myaccount-register">
                 <div class="form-group">
                   <label for="">Địa chỉ</label>
-                  <input type="text" placeholder="{{user.Address}}" name="Address" id="Address">
+                  <input type="text" placeholder="{{user.Address}}" name="Address">
                 </div>
                 <div class="form-group">
                   <label for="">Số điện thoại</label>
-                  <input type="text" placeholder="{{user.Phonenumber}}" name="pnumber" id="pnumber">
+                  <input type="text" placeholder="{{user.Phonenumber}}" name="Phonenumber">
                 </div>
                 <div class="form-group">
                   <label for="">Email</label>
-                  <input type="text" placeholder="{{user.Email}}" name="Email" id="Email">
+                  <input type="text" placeholder="{{user.Email}}" name="Email">
                 </div>
               </div>
             </div>
+            <input class="aa-browse-btn col-md-offset-5" type="submit" value="Lưu Thông Tin">
           </form>
         </div>
       </div>

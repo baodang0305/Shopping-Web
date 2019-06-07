@@ -3,10 +3,9 @@ var router = express.Router();
 
 
 const MongoClient = require("mongodb").MongoClient;
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
 
 router.get('/', function(req, res, next){
-  var messages = req.flash('error');
 
   var noMatch = null;
   MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, dbRef) {
@@ -46,9 +45,20 @@ router.get('/', function(req, res, next){
 
           dbRef.close();
 
-          res.render('index', { isLogin: Boolean(req.user), user: req.user, title: 'Trang Chủ', 'list_product_man': list_product_man, 'list_product_women': list_product_women,
-                                                   'list_product_sport': list_product_sport,'list_product_popular': list_product_popular,
-                                                   'list_product_feature': list_product_feature, 'list_product_new': list_product_new});
+          var messages = req.flash('error');
+          console.log(messages)
+
+          res.render('index', { isLogin: Boolean(req.user), 
+            user: req.user, title: 'Trang Chủ', 
+            'list_product_man': list_product_man, 
+            'list_product_women': list_product_women,    
+            'list_product_sport': list_product_sport,
+            'list_product_popular': list_product_popular,
+            'list_product_feature': list_product_feature, 
+            'list_product_new': list_product_new, 
+            'messages': messages, 
+            'hasErrors': messages.length > 0
+          });
         }
 
         Async_Await();

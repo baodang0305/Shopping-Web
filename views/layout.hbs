@@ -99,8 +99,8 @@
                 <div class="aa-header-top-right">
                   <ul class="aa-head-top-nav-right">
                     {{#if isLogin}}
-                    <li><a href="account-detail">{{user.Username}}</a></li>
                     <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
+                    <li><a href="account-detail" class="fa fa-user">&nbsp;{{user.Username}}</a></li>
                     <li><a href="signout">Đăng xuất</a></li>
                     {{else}}
                     <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
@@ -326,12 +326,23 @@
     <!-- / footer -->
 
     <!-- Login Modal -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade
+    {{#if hasErrors}}
+              in
+    {{/if}}
+    " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4>Đăng Nhập</h4>
+            {{#if hasErrors}}
+              <div class="alert alert-danger">
+                {{# each messages}}
+                  <p>{{this}}</p>
+                {{/each}}
+              </div>
+            {{/if}}
             <form class="aa-login-form" action="signin" method="post">
               <label for="">Tên đăng nhập<span>*</span></label>
               <input type="text" placeholder="Username" name="UserName" id="UserName">

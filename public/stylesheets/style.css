@@ -36,6 +36,9 @@
 */
 
 /* BASE - Base tyles, Variables, Mixins, etc. */
+.color-red{
+  color: red;
+}
 .text-font-color-pink{
   color: #ff6666;
   font-weight: 700;

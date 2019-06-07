@@ -1,11 +1,8 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
-const bcrypt = require("bcrypt");
 const MongoClient = require("mongodb").MongoClient;
-
-const saltRounds = 10;
 var CustomerModel = require('../models/customer');
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
 
 passport.serializeUser(function(customer, done) {
   done(null, customer.Username)
@@ -41,7 +38,7 @@ passport.use('local.signup', new LocalStrategy({
 
     // validate with express validator
     req.checkBody('UserName', 'Tên đăng nhập chưa hợp lệ').notEmpty();
-    req.checkBody('Password', 'Mật khẩu chưa hợp lệ').notEmpty().isLength({min: 10, max: 20});
+    req.checkBody('Password', 'Mật khẩu chưa hợp lệ').isLength({min: 10, max: 20});
     var errors = req.validationErrors();
     if (errors) {
       var messages = [];
@@ -58,13 +55,12 @@ passport.use('local.signup', new LocalStrategy({
         let collectionCustomer = dbRef.db("shoppingdb").collection("Customer");
         collectionCustomer.findOne({Username: username}, function(err, client) {
 
-          dbRef.close();
-
           if (err) {
             return done(null, false, {message: "Không thể kết nối"});
           }
           if (client) {
-           return done(null, false, {message: "Tên này đã có người sử dụng"});
+            dbRef.close();
+            return done(null, false, {message: "Tên này đã có người sử dụng"});
           }
           let newCustomer = new CustomerModel();
           let name = req.body.Name;
@@ -74,6 +70,7 @@ passport.use('local.signup', new LocalStrategy({
           newCustomer.signup(username, password);
           newCustomer.addInfo(name, address, phone, email);
           collectionCustomer.insert(newCustomer, function(err, client) {
+            dbRef.close();
             if (err) {
               return done(null, false, {message: "Không thể kết nối"});
             }
@@ -94,9 +91,7 @@ passport.use('local.signup', new LocalStrategy({
         } else {
           let collectionCustomer = dbRef.db("shoppingdb").collection("Customer");
           collectionCustomer.findOne({Username: username}, function(err, client) {
-
             dbRef.close();
-
             if (err) {
               return done(null, false, {message: "Không thể kết nối"});
             }

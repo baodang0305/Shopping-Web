@@ -23,4 +23,12 @@ module.exports = function CustomerModel() {
     this.Phonenumber = phoneNumber
     this.Email = email
   }
+  this.updateInfo = function(username, password, name, address, phonenumber, email){
+    this.Username = username;
+    this.Password = password;
+    this.Name = name;
+    this.Address = address;
+    this.Phonenumber = phonenumber;
+    this.Email = email;
+  }
 }

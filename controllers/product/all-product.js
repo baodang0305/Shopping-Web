@@ -7,8 +7,7 @@ var router = express.Router();
 // router.use(csrfProtection);
 
 const MongoClient = require("mongodb").MongoClient;
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
-
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
 router.get('/all-product-:id', function(req, res, next){
   var id = req.params.id;
 

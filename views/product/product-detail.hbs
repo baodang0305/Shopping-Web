@@ -13,7 +13,7 @@
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
                         <div class="simpleLens-big-image-container">
-                          <img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" class="simpleLens-big-image">
+                          <img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{product_detail.Image}}" class="simpleLens-big-image">
                         </div>
                       </div>
                     </div>
@@ -79,7 +79,6 @@
                     <li>{{product_detail.Describe}}</li>
                   </ul>
                 </div>
-                {{/each}}
                 <div class="tab-pane fade " id="review">
                  <div class="aa-product-review-area">
                    <h4>{{related_comment.length}} đánh giá cho T-Shirt</h4>
@@ -102,7 +101,6 @@
                       {{/each}}
                    </ul>
                    <h4>Thêm Đánh Giá</h4>
-                   {{#each product_detail}}
                    <!-- review form -->
                    <form action="/add-review" class="aa-review-form" method="post">
                      <div class="aa-your-rating">
@@ -121,10 +119,9 @@
                         <label for="name">Họ tên</label>
                         <input type="text" class="form-control" id="name" placeholder="Name" name="Name">
                       </div>
-                      <input type="hidden" name="Product" value="{{ this._id }}">
+                      <input type="hidden" name="Product" value="{{ product_detail._id }}">
                       <button type="submit" class="btn btn-default aa-review-submit">Gửi</button>
                    </form>
-                   {{/each}}
                  </div>
                 </div>
               </div>

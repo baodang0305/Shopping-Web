@@ -8,7 +8,7 @@ const MongoClient = require("mongodb").MongoClient;
 // var csrfProtection = csrf();
 // router.use(csrfProtection);
 
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.gcp.mongodb.net/test?retryWrites=true";
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
 
 router.get('/product-detail-:id', function(req, res, next){
   var id = req.params.id;
@@ -21,21 +21,20 @@ router.get('/product-detail-:id', function(req, res, next){
       const collectionProduct = dbRef.db("shoppingdb").collection("Product");
       const collectionComment = dbRef.db("shoppingdb").collection("Comment");
       (async()=>{
-        let product_detail = await collectionProduct.find({_id: object_id}).toArray();
+        let product_detail = await collectionProduct.findOne({_id: object_id});
         let all_product = await collectionProduct.find({}).toArray();
         let related_comment = await collectionComment.find({Product: object_id}).toArray();
         let all_product_related = await collectionProduct.find({Category: product_detail.Category, Gender: product_detail.Gender}).toArray();
 
         dbRef.close();
 
-        var starList = ["-o", "-o", "-o", "-o", "-o"];
-        for (let i = 0; i < Number(related_comment[0].Star); i++) {
-          starList[i] = "";
-        }
-        console.log(related_comment[0])
-        console.log(related_comment[0].Star)
-        console.log(starList)
-        res.render('product-detail', { title: 'Product Detail',
+        
+        if (related_comment[0]) {
+          var starList = ["-o", "-o", "-o", "-o", "-o"];
+          for (let i = 0; i < Number(related_comment[0].Star); i++) {
+            starList[i] = "";
+          }
+          res.render('product-detail', { title: 'Product Detail',
         isLogin: Boolean(req.user),
         user: req.user,
         product_detail: product_detail,
@@ -43,7 +42,18 @@ router.get('/product-detail-:id', function(req, res, next){
         related_comment: related_comment,
         starList: starList,
         'all_product_related': all_product_related
+        //khoan, chưa lưu kìa.chú ý luu trc khi chạy lại m luu di m
+
+          });
+        } else {
+          res.render('product-detail', { title: 'Product Detail',
+        isLogin: Boolean(req.user),
+        user: req.user,
+        product_detail: product_detail,
+        all_product: all_product,
+        'all_product_related': all_product_related
       });
+        }
       })();
     }
   });
