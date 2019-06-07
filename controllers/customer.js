@@ -22,7 +22,7 @@ router.post('/account-detail', function(req, res, next){
   req.checkBody('Address', 'địa chỉ').notEmpty();
   req.checkBody('Phonenumber', 'số điện thoại').notEmpty();
   req.checkBody('Email', 'email').isEmail();
-  console.log(req.user.Username);
+  //console.log(req.user.Username);
   let errors = req.validationErrors();
 
   if(errors){
@@ -50,11 +50,18 @@ router.post('/account-detail', function(req, res, next){
           }
           else{
             req.body.Password = bcrypt.hashSync(req.body.Password, 10);
-            customerCollection.updateOne({ 'Username': req.user.Username},
+            (async()=>{
+              await customerCollection.updateOne({ 'Username': req.user.Username},
                                          {$set: {'Username': req.body.Username, 'Password': req.body.Password, 'Name': req.body.Name, 'Address': req.body.Address, 'Phonenumber': req.body.Phonenumber, 'Email': req.body.Email}});
-            client.close();
-            req.user = req.body;
-            res.render('index', {title: 'Trang Chủ', isLogin: Boolean(req.user), user: req.user});
+              let user = await customerCollection.findOne({Username: req.body.Username});
+              client.close();
+              req.logout();
+              req.login(user, function(err) {
+                if (err) {console.log(err); return next(err); }
+                console.log('Thành công');
+                return res.render('index', {title: 'Trang Chủ', isLogin: Boolean(req.user), user: req.user});
+              });
+            })(); 
           }
         }
       })
