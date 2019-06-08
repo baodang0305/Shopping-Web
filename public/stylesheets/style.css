@@ -49,6 +49,11 @@
   margin-top: 2px !important;
 }
 
+.text-color-size{
+  color: red !important;
+  font-size: 12px !important;
+}
+
 .passwordBox{
   margin-bottom: 0px !important;
 }

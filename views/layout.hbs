@@ -104,7 +104,7 @@
                     <li><a href="signout">Đăng xuất</a></li>
                     {{else}}
                     <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
-                    <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                    <li class="active"><a href="#login-modal" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
                     {{/if}}
                   </ul>
                 </div>
@@ -326,11 +326,7 @@
     <!-- / footer -->
 
     <!-- Login Modal -->
-    <div class="modal fade
-    {{#if hasErrors}}
-              in
-    {{/if}}
-    " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -338,7 +334,7 @@
             <h4>Đăng Nhập</h4>
             {{#if hasErrors}}
               <div class="alert alert-danger">
-                {{# each messages}}
+                {{#each messages}}
                   <p>{{this}}</p>
                 {{/each}}
               </div>
