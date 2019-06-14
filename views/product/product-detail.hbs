@@ -74,45 +74,52 @@
                 </div>
                 <div class="tab-pane fade " id="review">
                  <div class="aa-product-review-area">
+                   {{#if hasComment}}
                    <h4>{{related_comment.length}} đánh giá cho T-Shirt</h4>
                    <ul class="aa-review-nav">
+                     {{#each related_comment}}
                      <li>
                         <div class="media">
                           <div class="media-body">
                             <div class="aa-product-rating">
-                              {{#each starList}}
+                                {{#each Star}}
                                 <span class="fa fa-star{{this}}"></span>
-                              {{/each}}
+                                {{/each}}
                             </div>
-                            <h4 class="media-heading"><strong>{{#each related_comment}}
-                              {{this.Username}}
-                            </strong> - <span>{{this.Time}}</span></h4>
+                            <h4 class="media-heading"><strong>{{this.Username}}</strong> - <span>{{this.Time}}</span></h4>
                             <p>{{this.Text}}</p>
                           </div>
                         </div>
                       </li>
                       {{/each}}
                    </ul>
+                   {{else}}
+                   <h4>0 đánh giá cho T-Shirt</h4>
+                   {{/if}}
                    <h4>Thêm Đánh Giá</h4>
                    <!-- review form -->
                    <form action="/add-review" class="aa-review-form" method="post">
                      <div class="aa-your-rating">
-                       <p>Đánh giá của bạn</p>
-                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="1" /></span>
-                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="2" /></span>
-                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="3" /></span>
-                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="4" /></span>
-                       <span class="fa fa-star-o"><input type="radio" name="starValue" value="5" /></span>
+                       <p>Đánh giá sao</p>
+                       <span class="fa fa-star-o" id="star1"></span>
+                       <span class="fa fa-star-o" id="star2"></span>
+                       <span class="fa fa-star-o" id="star3"></span>
+                       <span class="fa fa-star-o" id="star4"></span>
+                       <span class="fa fa-star-o" id="star5"></span>
                      </div>
                       <div class="form-group">
-                        <label for="message">Đánh giá của bạn</label>
+                        <label for="message">Bình luận của bạn</label>
                         <textarea class="form-control" rows="3" id="message" name="Message"></textarea>
                       </div>
+                      {{#if isLogin}}
+                      {{else}}
                       <div class="form-group">
                         <label for="name">Họ tên</label>
                         <input type="text" class="form-control" id="name" placeholder="Name" name="Name">
                       </div>
+                      {{/if}}
                       <input type="hidden" name="Product" value="{{ product_detail._id }}">
+                      <input type="hidden" name="star" value="" id="starResult">
                       <button type="submit" class="btn btn-default aa-review-submit">Gửi</button>
                    </form>
                  </div>
@@ -151,3 +158,4 @@
     </div>
   </section>
   <!-- / product category -->
+  <script type="text/javascript" src="starHover.js"></script>
