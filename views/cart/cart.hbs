@@ -27,39 +27,25 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Sản phẩm</th>
+                        <th>Remove</th>
+                        <th>Image</th>
+                        <th>Tên Sản phẩm</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
                         <th>Tổng</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$250</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$250</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="polo-shirt-2.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$150</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$150</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="polo-shirt-3.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$50</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$50</td>
-                      </tr>
+                      {{#each list_product}}
+                        <tr>
+                          <td><a class="remove" ><fa class="fa fa-close"></fa></a></td>
+                          <td><a href="#"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="img"></a></td>
+                          <td><a class="aa-cart-title" href="#">{{this.Name}}</a></td>
+                          <td>${{this.Cost}}</td>
+                          <td><input class="aa-cart-quantity" type="number" value="{{this.Amount}}"></td>
+                          <td>${{this.Total}}</td>
+                        </tr>
+                      {{/each}}
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
@@ -80,11 +66,11 @@
                  <tbody>
                    <tr>
                      <th>Tổng phụ</th>
-                     <td>$450</td>
+                     <td>${{total}}</td>
                    </tr>
                    <tr>
                      <th>Tổng</th>
-                     <td>$450</td>
+                     <td>${{total}}</td>
                    </tr>
                  </tbody>
                </table>

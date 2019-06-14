@@ -1,70 +1,45 @@
-var express = require('express');
-var router = express.Router();
-
-
-const MongoClient = require("mongodb").MongoClient;
-const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
+const express = require('express');
+const product = require('../models/product');
+const router = express.Router();
 
 router.get('/', function(req, res, next){
 
   var noMatch = null;
-  MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, dbRef) {
-    if(err){
-      console.log(err);
-    }
-    else{
-      console.log("Successfully connected");
-      const collectionProduct = dbRef.db("shoppingdb").collection("Product");
-
-      if(req.query.strSearch){
-        console.log(req.query.strSearch);
-        const regex = new RegExp(escape(req.query.strSearch), 'gi');
-        console.log(regex);
-          const Async_Await = async()=>{
-          let list_all_product = await collectionProduct.find({Name: regex}).toArray();
-
-          dbRef.close();
-
-          console.log(list_all_product);
-          if(list_all_product.length < 1){
-            noMatch = "Không có sản phẩm";
-
-          }
-          res.render('all-product', {title: "Sản Phẩm", 'mess': noMatch, 'list_all_product': list_all_product});
-        }
-        Async_Await();
+  if(req.query.strSearch){
+      const regex = new RegExp(escape(req.query.strSearch), 'gi');
+      const Async_Await = async()=>{
+      let list_all_product = await product.find({Name: regex});
+      if(list_all_product.length < 1){
+        noMatch = "Không có sản phẩm";
       }
-      else{
-        const Async_Await = async()=>{
-          let list_product_man = await collectionProduct.find({Gender: 'Man', }).limit(8).toArray();
-          let list_product_women = await collectionProduct.find({Gender: 'Women'}).limit(8).toArray();
-          let list_product_sport = await collectionProduct.find({Category: 'Sport'}).limit(8).toArray();
-          let list_product_popular = await collectionProduct.find({Product_Group: 'Popular'}).toArray();
-          let list_product_feature = await collectionProduct.find({Product_Group: 'Feature'}).toArray();
-          let list_product_new = await collectionProduct.find({Product_Group: 'New'}).toArray();
-
-          dbRef.close();
-
-          var messages = req.flash('error');
-          console.log(messages)
-
-          res.render('index', { isLogin: Boolean(req.user), 
-            user: req.user, title: 'Trang Chủ', 
-            'list_product_man': list_product_man, 
-            'list_product_women': list_product_women,    
-            'list_product_sport': list_product_sport,
-            'list_product_popular': list_product_popular,
-            'list_product_feature': list_product_feature, 
-            'list_product_new': list_product_new, 
-            'messages': messages, 
-            'hasErrors': messages.length > 0
-          });
-        }
-
-        Async_Await();
-      }
+      res.render('all-product', {title: "Sản Phẩm", 'mess': noMatch, 'list_all_product': list_all_product});
     }
-  });
+    Async_Await();
+  }
+  else{
+    const Async_Await = async()=>{
+      let list_product_man = await product.find({Gender: 'Man', }).limit(8);
+      let list_product_women = await product.find({Gender: 'Women'}).limit(8);
+      let list_product_sport = await product.find({Category: 'Sport'}).limit(8);
+      let list_product_popular = await product.find({Product_Group: 'Popular'});
+      let list_product_feature = await product.find({Product_Group: 'Feature'});
+      let list_product_new = await product.find({Product_Group: 'New'});
+
+      var messages = req.flash('error');
+      res.render('index', { isLogin: Boolean(req.user), 
+        user: req.user, title: 'Trang Chủ', 
+        'list_product_man': list_product_man, 
+        'list_product_women': list_product_women,    
+        'list_product_sport': list_product_sport,
+        'list_product_popular': list_product_popular,
+        'list_product_feature': list_product_feature, 
+        'list_product_new': list_product_new, 
+        'messages': messages, 
+        'hasErrors': messages.length > 0
+      });
+    }
+    Async_Await();
+  }
 });
 
 module.exports = router;

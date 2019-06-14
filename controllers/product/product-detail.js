@@ -2,14 +2,8 @@ var express = require('express');
 var ObjectId = require('mongodb').ObjectId;
 var router = express.Router();
 const MongoClient = require("mongodb").MongoClient;
-// var csrf = require('csurf');
-//
-//
-// var csrfProtection = csrf();
-// router.use(csrfProtection);
 
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
-
 router.get('/product-detail-:id', function(req, res, next){
   var id = req.params.id;
   var object_id = new ObjectId(id);
@@ -35,24 +29,22 @@ router.get('/product-detail-:id', function(req, res, next){
             starList[i] = "";
           }
           res.render('product-detail', { title: 'Product Detail',
-        isLogin: Boolean(req.user),
-        user: req.user,
-        product_detail: product_detail,
-        all_product: all_product,
-        related_comment: related_comment,
-        starList: starList,
-        'all_product_related': all_product_related
-        //khoan, chưa lưu kìa.chú ý luu trc khi chạy lại m luu di m
-
+            isLogin: Boolean(req.user),
+            user: req.user,
+            product_detail: product_detail,
+            all_product: all_product,
+            related_comment: related_comment,
+            starList: starList,
+            'all_product_related': all_product_related
           });
         } else {
           res.render('product-detail', { title: 'Product Detail',
-        isLogin: Boolean(req.user),
-        user: req.user,
-        product_detail: product_detail,
-        all_product: all_product,
-        'all_product_related': all_product_related
-      });
+            isLogin: Boolean(req.user),
+            user: req.user,
+            product_detail: product_detail,
+            all_product: all_product,
+            'all_product_related': all_product_related
+          });
         }
       })();
     }

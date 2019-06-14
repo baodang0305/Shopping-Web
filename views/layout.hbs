@@ -99,12 +99,11 @@
                 <div class="aa-header-top-right">
                   <ul class="aa-head-top-nav-right">
                     {{#if isLogin}}
-                    <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
+                    <li class="hidden-xs"><a href="cart">Giỏ Hàng</a></li>
                     <li><a href="account-detail" class="fa fa-user">&nbsp;{{user.Username}}</a></li>
-                    <li><a href="signout">Đăng xuất</a></li>
+                    <li><a href="signout">Đăng Xuất</a></li>
                     {{else}}
-                    <li class="hidden-xs"><a href="cart">Giỏ hàng</a></li>
-                    <li class="active"><a href="#login-modal" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                    <li class="active"><a href="#login-modal" data-toggle="modal" data-target="#login-modal">Đăng Nhập</a></li>
                     {{/if}}
                   </ul>
                 </div>
@@ -133,42 +132,44 @@
                 </div>
                 <!-- / logo  -->
                 <!-- cart box -->
-                <div class="aa-cartbox">
-                  <a class="aa-cart-link" href="#">
-                    <span class="fa fa-shopping-basket"></span>
-                    <span class="aa-cart-title">Giỏ hàng</span>
-                    <span class="aa-cart-notify">2</span>
-                  </a>
-                  <div class="aa-cartbox-summary">
-                    <ul>
-                      <li>
-                        <a class="aa-cartbox-img" href="#"><img src="woman-small-2.jpg" alt="img"></a>
-                        <div class="aa-cartbox-info">
-                          <h4><a href="#">Tên sản phẩm</a></h4>
-                          <p>1 x $250</p>
-                        </div>
-                        <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                      </li>
-                      <li>
-                        <a class="aa-cartbox-img" href="#"><img src="woman-small-1.jpg" alt="img"></a>
-                        <div class="aa-cartbox-info">
-                          <h4><a href="#">Tên sản phẩm</a></h4>
-                          <p>1 x $250</p>
-                        </div>
-                        <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                      </li>
-                      <li>
-                        <span class="aa-cartbox-total-title">
-                          Tổng
-                        </span>
-                        <span class="aa-cartbox-total-price">
-                          $500
-                        </span>
-                      </li>
-                    </ul>
-                    <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                {{#if user}}
+                  <div class="aa-cartbox">
+                    <a class="aa-cart-link" href="#">
+                      <span class="fa fa-shopping-basket"></span>
+                      <span class="aa-cart-title">Giỏ Hàng</span>
+                      <span class="aa-cart-notify">2</span>
+                    </a>
+                    <div class="aa-cartbox-summary">
+                      <ul>
+                        <li>
+                          <a class="aa-cartbox-img" href="#"><img src="woman-small-2.jpg" alt="img"></a>
+                          <div class="aa-cartbox-info">
+                            <h4><a href="#">Tên sản phẩm</a></h4>
+                            <p>1 x $250</p>
+                          </div>
+                          <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                        </li>
+                        <li>
+                          <a class="aa-cartbox-img" href="#"><img src="woman-small-1.jpg" alt="img"></a>
+                          <div class="aa-cartbox-info">
+                            <h4><a href="#">Tên sản phẩm</a></h4>
+                            <p>1 x $250</p>
+                          </div>
+                          <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                        </li>
+                        <li>
+                          <span class="aa-cartbox-total-title">
+                            Tổng
+                          </span>
+                          <span class="aa-cartbox-total-price">
+                            $500
+                          </span>
+                        </li>
+                      </ul>
+                      <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                    </div>
                   </div>
-                </div>
+                {{/if}}
                 <!-- / cart box -->
                 <!-- search box -->
                 <div class="aa-search-box">

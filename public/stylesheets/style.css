@@ -36,6 +36,15 @@
 */
 
 /* BASE - Base tyles, Variables, Mixins, etc. */
+.width-30{
+  width: 30px;
+}
+.background-color-black{
+  background-color: #000;
+}
+.border-none{
+  border: none;
+}
 .color-red{
   color: red;
 }

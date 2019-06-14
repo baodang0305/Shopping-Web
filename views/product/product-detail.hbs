@@ -42,24 +42,17 @@
                       <a href="#" class="aa-color-black"></a>
                       <a href="#" class="aa-color-white"></a>
                     </div>
-                    <div class="aa-prod-quantity">
-                      <form action="">
-                        <select id="" name="">
-                          <option selected="1" value="0">1</option>
-                          <option value="1">2</option>
-                          <option value="2">3</option>
-                          <option value="3">4</option>
-                          <option value="4">5</option>
-                          <option value="5">6</option>
-                        </select>
-                      </form>
-                      <p class="aa-prod-category">
-                        Thể Loại: <a href="#">{{product_detail.Category}}</a>
-                      </p>
-                    </div>
-                    <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="#">Thêm Vào Giỏ Hàng</a>
-                    </div>
+                    <form action='/addcart-{{product_detail._id}}' method="POST">
+                      <div class="aa-prod-quantity">
+                        <input type="text" class="width-30" value="1" name="Amount">
+                        <p class="aa-prod-category">
+                          Thể Loại: <a href="#">{{product_detail.Category}}</a>
+                        </p>
+                      </div>
+                      <div class="aa-prod-view-bottom">
+                          <input type="submit" class="aa-add-to-cart-btn" value="Thêm Vào Giỏ Hàng">
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -135,7 +128,9 @@
                 <li>
                   <figure>
                     <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
-                    <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Thêm Vào Giỏ Hàng</a>
+                    <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
+                      <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
+                    </form>
                      <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{this.Name}}</a></h4>
                       <span class="aa-product-price">${{this.Discount}}</span><span class="aa-product-price"><del>${{this.Cost}}</del></span>
@@ -146,8 +141,6 @@
                     <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
                     <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                   </div>
-                  <!-- product badge -->
-                  <span class="aa-badge aa-sale" href="#">SALE!</span>
                 </li>
                 {{/each}}
               </ul>

@@ -8,7 +8,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
-
+const mongoose = require('mongoose');
 require('./config/passport');
 
 //require for routes
@@ -19,6 +19,13 @@ const productDetailRouter = require('./controllers/product/product-detail');
 const cartRouter = require('./controllers/cart');
 const commentRouter = require('./controllers/comment')
 const app = express();
+
+const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/shoppingdb";
+mongoose.Promise = global.Promise;
+mongoose.connect(uri, {useNewUrlParser: true}).then(
+  ()=>{console.log('connect is success')},
+  err=>{console.log(err);}
+);
 
 app.set('views', [
   path.join(__dirname, 'views'),
