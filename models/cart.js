@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 const Schame = mongoose.Schema;
 
@@ -17,3 +18,9 @@ const cartSchame = new Schame({
 
 const cart = mongoose.model('cart', cartSchame);
 module.exports = cart;
+=======
+
+module.exports = function CartModel() {
+  this.Product
+}
+>>>>>>> order_feature

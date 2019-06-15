@@ -28,15 +28,3 @@ for(let i = 1; i <= 5 ; i++) {
     }
   });
 }
-
-
-// function mouseOut(number) {
-//
-// }
-//
-// function mouseOver(number) {
-//
-// }
-//
-// function onClick(number) {
-// }
