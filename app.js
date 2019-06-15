@@ -17,14 +17,16 @@ const customerRouter = require('./controllers/customer');
 const productRouter = require('./controllers/product/all-product');
 const productDetailRouter = require('./controllers/product/product-detail');
 const cartRouter = require('./controllers/cart');
-const commentRouter = require('./controllers/comment')
+const orderRouter = require('./controllers/order');
+const commentRouter = require('./controllers/comment');
 const app = express();
 
 app.set('views', [
   path.join(__dirname, 'views'),
   path.join(__dirname, 'views/cart'),
   path.join(__dirname, 'views/customer'),
-  path.join(__dirname, 'views/product')
+  path.join(__dirname, 'views/product'),
+  path.join(__dirname, 'views/order')
 ]);
 
 app.set('view engine', 'hbs');
@@ -61,6 +63,7 @@ app.use('/', productDetailRouter);
 app.use('/', cartRouter);
 app.use('/', customerRouter);
 app.use('/', commentRouter);
+app.use('/', orderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
