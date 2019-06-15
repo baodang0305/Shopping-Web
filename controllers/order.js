@@ -6,6 +6,17 @@ const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://admin:admin@cluster0-tuy0h.mongodb.net/test?retryWrites=true&w=majority";
 
 var OrderModel = require('../models/order');
+var CartModel = require('../models/cart');
+
+function requiresLogin(req, res, next) {
+  if (req.user) {
+    return next();
+  } else {
+    var err = new Error('Bạn phải đăng nhập để xem trang này.');
+    err.status = 401;
+    return next(err);
+  }
+};
 
 function GetCart(username, callback) {
   MongoClient.connect(uri, { useNewUrlParser: true}, function(err, dbRef) {
@@ -24,87 +35,58 @@ function GetCart(username, callback) {
   });
 }
 
-function requiresLogin(req, res, next) {
-  if (req.user) {
-    return next();
-  } else {
-    var err = new Error('Bạn phải đăng nhập để xem trang này.');
-    err.status = 401;
-    return next(err);
-  }
-}
-
-router.get('/order', requiresLogin, function(req,res,next) { //them id cua cart vao
-  // let id = req.param.id
-  GetCart('Bao', function(cart){
-    res.render('order', {
-      user: req.user, title: 'Trang thông tin mua hàng',
-      cart: cart
-    });
+router.get('/order', requiresLogin, function(req,res,next) {
+  res.render('order', {
+    user: req.user, title: 'Trang thông tin mua hàng'
   });
 });
 
 router.post('/checkout', requiresLogin, function(req,res,next) {
-  const token = req.body.stripeToken;
-  const sum = 1000;
-  stripe.charges.create({
-    amount: sum,
-    currency: 'usd',
-    description: 'Example charge',
-    source: token,
-  }, (err, charge) => {
-    if (err) {
-      res.render('aftercheckout', {title: 'Xác nhận đơn hàng', message: err});
-    } else {
-      MongoClient.connect(uri, { useNewUrlParser: true}, function(err, dbRef) {
-        if(err) {
-          console.log(err);
-          return
-        } else {
-          
-          let orderCollection = dbRef.db("shoppingdb").collection("Order");
-          orderCollection.insertOne(, function() {
+  GetCart(req.user.Username, function(cart){
+    var sum = 0;
+    let product_lite_list = [];
+    const token = req.body.stripeToken;
+    let product_list = cart.Product;
 
-          });
-        }
+
+    for (let i = 0; i < product_list.length; i++) {
+      sum = sum + Number(product_list[i].Total)
+      product_lite_list.push({
+        id: product_list[i].__id,
+        amount: product_list[i].Amount
       });
-      res.render('aftercheckout', {title: 'Xác nhận đơn hàng', message: 'Bạn đã mua hàng thành công!'});
     }
+
+    let sumInCent = sum * 100
+    stripe.charges.create({
+      amount: sumInCent,
+      currency: 'usd',
+      description: 'order cua ' + req.user.Username,
+      source: token,
+    }, (err, charge) => {
+      if (err) {
+        res.render('aftercheckout', {title: 'Xác nhận đơn hàng', message: err});
+      } else {
+        const newOrder = new OrderModel({
+          Username: req.user.Username,
+          Sum: sum,
+          Products: product_lite_list,
+          ReceiverPhonenumber: req.body.Phonenumber,
+          ReceiverAddress: req.body.Address,
+          ReceiverName: req.body.Name
+        });
+        OrderModel.create(newOrder, function(err, order){
+          if (err) {
+            console.log(err)
+          } else {
+            CartModel.find({Username: req.user.Username}).remove().exec()
+            res.render('aftercheckout', {title: 'Xác nhận đơn hàng', message: 'Bạn đã mua hàng thành công!'});
+          }
+        });
+      }
+    });
   });
 });
-
-
-
-// const stripe = require('stripe')('sk_test_fEWUlhy9hiuwamixG4EDWF5J00dAp2cRIb')
-// const express = require('express')
-// const cors = require('cors')
-// const bodyParser = require('body-parser')
-//
-// const app = express()
-// const port = process.env.PORT || 3000
-//
-// app.use(cors())
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({
-//   extented: false
-// }))
-//
-// app.post('/charge', (req, res) => {
-//   const {amount, currency, token, description} = req.body
-//   console.log(amount, currency, token, description)
-//   stripe.charges.create({
-//     amount: +amount,
-//     currency,
-//     source: token,
-//     description
-//   }, (err, charge) => {
-//     if (err) res.json({code: 0})
-//     res.json({code: 1})
-//   })
-// })
-
-
-
 
 
 

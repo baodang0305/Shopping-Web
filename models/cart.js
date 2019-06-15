@@ -1,26 +1,19 @@
-<<<<<<< HEAD
 const mongoose = require('mongoose');
-const Schame = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const cartSchame = new Schame({
+const cartSchema = new Schema({
     Username: {type: String, required: true},
     Product: [
                 {
-                    Id:{type: String}, 
-                    Image: {type: String}, 
-                    Name: {type: String}, 
-                    Cost: {type: Number}, 
-                    Amount: {type: Number}, 
-                    Total: {type: String}
+                    Id:{type: String},
+                    Image: {type: String},
+                    Name: {type: String},
+                    Cost: {type: Number},
+                    Amount: {type: Number},
+                    Total: {type: Number}
                 }
             ]
 },{collection: 'Cart'});
 
-const cart = mongoose.model('cart', cartSchame);
+const cart = mongoose.model('cart', cartSchema);
 module.exports = cart;
-=======
-
-module.exports = function CartModel() {
-  this.Product
-}
->>>>>>> order_feature

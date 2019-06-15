@@ -26,15 +26,15 @@ router.get('/', function(req, res, next){
       let list_product_new = await product.find({Product_Group: 'New'});
 
       var messages = req.flash('error');
-      res.render('index', { isLogin: Boolean(req.user), 
-        user: req.user, title: 'Trang Chủ', 
-        'list_product_man': list_product_man, 
-        'list_product_women': list_product_women,    
+      res.render('index', { isLogin: Boolean(req.user),
+        user: req.user, title: 'Trang Chủ',
+        'list_product_man': list_product_man,
+        'list_product_women': list_product_women,
         'list_product_sport': list_product_sport,
         'list_product_popular': list_product_popular,
-        'list_product_feature': list_product_feature, 
-        'list_product_new': list_product_new, 
-        'messages': messages, 
+        'list_product_feature': list_product_feature,
+        'list_product_new': list_product_new,
+        'messages': messages,
         'hasErrors': messages.length > 0
       });
     }
