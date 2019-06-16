@@ -1,10 +1,21 @@
 const express = require('express');
-const cart = require('../models/cart');
-const product = require('../models/product');
 const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
-router.get('/cart', function(req, res, next){
+const cart = require('../models/cart');
+const product = require('../models/product');
+
+function requiresLogin(req, res, next) {
+  if (req.user) {
+    return next();
+  } else {
+    var err = new Error('Bạn phải đăng nhập để xem trang này.');
+    err.status = 401;
+    return next(err);
+  }
+};
+
+router.get('/cart', requiresLogin, function(req, res, next){
   let Async_Await = async()=>{
     let total = 0;
     let arrProduct=[];
@@ -20,11 +31,7 @@ router.get('/cart', function(req, res, next){
   Async_Await();
 });
 
-router.get('/checkout', function(req, res,next){
-  res.render('checkout', { title: 'Mua hàng', isLogin: Boolean(req.user), user: req.user });
-});
-
-router.post('/addcart-:id', function(req, res, next){
+router.post('/addcart-:id', requiresLogin, function(req, res, next){
   let id = req.params.id;
   if(req.isAuthenticated()){
       let amount = req.body.Amount;
@@ -39,10 +46,10 @@ router.post('/addcart-:id', function(req, res, next){
           if(tempCustomerInCart){
               const pro = {
                   'Id': tempProduct._id,
-                  'Image': tempProduct.Image, 
-                  'Name': tempProduct.Name, 
-                  'Cost': tempProduct.Cost, 
-                  'Amount': amount, 
+                  'Image': tempProduct.Image,
+                  'Name': tempProduct.Name,
+                  'Cost': tempProduct.Cost,
+                  'Amount': amount,
                   'Total': total
               }
               cart.findOneAndUpdate({Username: req.user.Username},
@@ -62,11 +69,11 @@ router.post('/addcart-:id', function(req, res, next){
                   Username: req.user.Username,
                   Product: [
                               {
-                                'Id': tempProduct._id, 
-                                'Image': tempProduct.Image, 
-                                'Name': tempProduct.Name, 
-                                'Cost': tempProduct.Cost, 
-                                'Amount': amount, 
+                                'Id': tempProduct._id,
+                                'Image': tempProduct.Image,
+                                'Name': tempProduct.Name,
+                                'Cost': tempProduct.Cost,
+                                'Amount': amount,
                                 'Total': total
                               }
                            ]
@@ -80,14 +87,9 @@ router.post('/addcart-:id', function(req, res, next){
       }
       Async_Await();
   }
-  else{    
+  else{
           res.redirect('/product-detail-'+id);
   }
 });
 
 module.exports = router;
-
-
-
-
-
