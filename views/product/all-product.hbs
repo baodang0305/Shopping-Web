@@ -21,21 +21,13 @@
           <div class="aa-product-catg-content">
             <div class="aa-product-catg-head">
               <div class="aa-product-catg-head-left">
-                <form action="" class="aa-sort-form">
-                  <label for="">Sắp Xếp</label>
-                  <select id="sortSelect">
-                    <option value="1" selected="Default">Default</option>
-                    <option value="2">Tên</option>
-                    <option value="3">Giá</option>
-                    <option value="4">Ngày</option>
-                  </select>
-                </form>
                 <form action="" class="aa-show-form">
                   <label for="">Hiển Thị</label>
-                  <select id="showSelect">
-                    <option value="1" selected="12">12</option>
-                    <option value="2">24</option>
-                    <option value="3">36</option>
+                  <select name="Show" id="Show">
+                    <option value="0" selected="Tất cả">Tất cả</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
                   </select>
                 </form>
               </div>
@@ -49,7 +41,7 @@
               <ul class="aa-product-catg">
                 {{#each list_all_product}}
                 <!-- start single product item -->
-                <li>
+                <li id={{@index}}>
                   <figure>
                     <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                     <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
@@ -179,43 +171,63 @@
           <aside class="aa-sidebar">
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
-              <h3>Giới tính</h3>
-              <ul class="aa-catg-nav">
-                <li><a href="#">Phái Nam</a></li>
-                <li><a href="">Phái Nữ</a></li>
-              </ul>
-            </div>
-            <!-- single sidebar -->
-            <div class="aa-sidebar-widget">
-              <h3>Mua Theo Giá</h3>
-              <!-- price range -->
-              <div class="aa-sidebar-price-range">
-               <form action="">
-                  <span id="skip-value-lower" class="example-val"><input type="text" id="lowerValue"></span>
-                 <span id="skip-value-upper" class="example-val"><input type="text" id="upperValue"></span>
-                 <button class="aa-filter-btn" type="submit">Bộ Lọc</button>
-               </form>
+              <form action="/all-product" method="get">
+                <h3>Giới tính</h3>
+                <ul class="aa-catg-nav">
+                  <li>Phái Nam <input type="radio" name="Gender" value="Man"></li>
+                  <li>Phái Nữ <input type="radio" name="Gender" value="Women"></li>
+                  <li>Nam và Nữ <input type="radio" name="Gender" value="Women and Man"></li>
+                </ul>
               </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Mua Theo Giá</h3>
+                <!-- price range -->
+                <div class="aa-sort-form">
+                  <select id="priceSelect" name="Price">
+                    <option value="0" selected="none">none</option>
+                    <option value="1">&le;10$</option>
+                    <option value="2">10$-30$</option>
+                    <option value="3">30$-60$</option>
+                    <option value="4">&ge;60$</option>
+                  </select>
+                </div>
 
-            </div>
-            <!-- single sidebar -->
-            <div class="aa-sidebar-widget">
-              <h3>Mua Theo Màu</h3>
-              <div class="aa-color-tag">
-                <a class="aa-color-green" href="#"></a>
-                <a class="aa-color-yellow" href="#"></a>
-                <a class="aa-color-pink" href="#"></a>
-                <a class="aa-color-purple" href="#"></a>
-                <a class="aa-color-blue" href="#"></a>
-                <a class="aa-color-orange" href="#"></a>
-                <a class="aa-color-gray" href="#"></a>
-                <a class="aa-color-black" href="#"></a>
-                <a class="aa-color-white" href="#"></a>
-                <a class="aa-color-cyan" href="#"></a>
-                <a class="aa-color-olive" href="#"></a>
-                <a class="aa-color-orchid" href="#"></a>
               </div>
-            </div>
+              <div class="aa-sidebar-widget">
+                <h3>Phân loại</h3>
+                <!-- price range -->
+                <div class="aa-sort-form">
+                  <select id="productTypeSelect" name="Product_Group">
+                    <option value="1" selected="none">none</option>
+                    <option value="New">Sản phẩm mới</option>
+                    <option value="Popular">Phổ biến</option>
+                    <option value="Feature">Đặc sắc</option>
+                  </select>
+                </div>
+              </div>
+              <!-- single sidebar -->
+                  <div class="aa-sidebar-widget">
+                    <h3>Mua Theo Màu</h3>
+                    <div style="text-align:center">
+                    <div class="aa-color-tag">
+                      <a class="aa-color-green" href="#"></a>
+                      <a class="aa-color-yellow" href="#"></a>
+                      <a class="aa-color-pink" href="#"></a>
+                      <a class="aa-color-purple" href="#"></a>
+                      <a class="aa-color-blue" href="#"></a>
+                      <a class="aa-color-orange" href="#"></a>
+                      <a class="aa-color-gray" href="#"></a>
+                      <a class="aa-color-black" href="#"></a>
+                      <a class="aa-color-white" href="#"></a>
+                      <a class="aa-color-cyan" href="#"></a>
+                      <a class="aa-color-olive" href="#"></a>
+                      <a class="aa-color-orchid" href="#"></a>
+                    </div>
+                    <button class="aa-filter-btn" type="submit">Sử dụng bộ Lọc</button>
+                  </div>
+                </div>
+              </form>
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
               <h3>Lượt Xem Gần Đây</h3>
@@ -276,8 +288,8 @@
             </div>
           </aside>
         </div>
-
       </div>
     </div>
+    <script type="text/javascript" src="filter.js"></script>
   </section>
   <!-- / product category -->

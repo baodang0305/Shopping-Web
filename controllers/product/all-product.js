@@ -5,10 +5,10 @@ const router = express.Router();
 router.get('/all-product', function(req, res, next){
   (async()=>{
     var list_all_product;
-    console.log(req.query)
-    if (req.query.all == null) {
+    if (req.query == null) {
+      console.log(req.body)
+    } else if (req.query.all == null) {
       list_all_product = await product.find(req.query);
-      console.log(list_all_product)
     } else {
       list_all_product = await product.find({});
     }
