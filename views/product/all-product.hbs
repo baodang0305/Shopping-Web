@@ -23,7 +23,7 @@
               <div class="aa-product-catg-head-left">
                 <form action="" class="aa-sort-form">
                   <label for="">Sắp Xếp</label>
-                  <select name="">
+                  <select id="sortSelect">
                     <option value="1" selected="Default">Default</option>
                     <option value="2">Tên</option>
                     <option value="3">Giá</option>
@@ -32,7 +32,7 @@
                 </form>
                 <form action="" class="aa-show-form">
                   <label for="">Hiển Thị</label>
-                  <select name="">
+                  <select id="showSelect">
                     <option value="1" selected="12">12</option>
                     <option value="2">24</option>
                     <option value="3">36</option>
@@ -179,24 +179,20 @@
           <aside class="aa-sidebar">
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
-              <h3>Loại</h3>
+              <h3>Giới tính</h3>
               <ul class="aa-catg-nav">
                 <li><a href="#">Phái Nam</a></li>
                 <li><a href="">Phái Nữ</a></li>
-                <li><a href="">Thể Thao</a></li>
               </ul>
             </div>
-
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
               <h3>Mua Theo Giá</h3>
               <!-- price range -->
               <div class="aa-sidebar-price-range">
                <form action="">
-                  <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                  </div>
-                  <span id="skip-value-lower" class="example-val">30.00</span>
-                 <span id="skip-value-upper" class="example-val">100.00</span>
+                  <span id="skip-value-lower" class="example-val"><input type="text" id="lowerValue"></span>
+                 <span id="skip-value-upper" class="example-val"><input type="text" id="upperValue"></span>
                  <button class="aa-filter-btn" type="submit">Bộ Lọc</button>
                </form>
               </div>
