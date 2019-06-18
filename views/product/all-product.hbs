@@ -144,9 +144,9 @@
               </div>
               <!-- / quick view modal -->
             </div>
-            {{#ifCond count "<" 8}}
+            <!-- {{#ifCond count "<" 8}}
               <h3 class="text-center color-red">Trang Cuối</h3>
-            {{/ifCond}}
+            {{/ifCond}} -->
             <div class="aa-product-catg-pagination">
               <nav>
                 <ul class="pagination">
@@ -155,9 +155,9 @@
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
-                  <li class="active"><a id="page1">{{page}}</a></li>
-                  <li><a id="page2"></a></li>
-                  <li><a id="page3"></a></li>
+                  <li><a id="page1" href= "/all-product/viewpage=1{{searchObjectString}}">1</a></li>
+                  <li><a id="page2" href= "/all-product/viewpage=2{{searchObjectString}}">2</a></li>
+                  <li><a id="page3" href= "/all-product/viewpage=3{{searchObjectString}}">3</a></li>
                   <li>
                     <a id="next" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
@@ -172,7 +172,7 @@
           <aside class="aa-sidebar">
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
-              <form action="/all-product" method="get">
+              <form action="/all-product/viewpage=1" method="get">
                 <h3>Giới tính</h3>
                 <ul class="aa-catg-nav">
                   <li>Phái Nam <input type="radio" name="Gender" value="Man"></li>
@@ -310,13 +310,15 @@
   </section>
   <!-- / product category -->
 
-  <script>
+
+  <!-- <script>
 	var page1 = parseInt($('#page1').html());
     var page2 = page1 + 1;
     var page3 = page1 + 2;
-	$('#page2').click(function () {
+	$('#page2').onclick(function () {
+    console.log({{count}})
 		if ({{count}} == 8) {
-			$('#page2').attr("href", "/all-product-{{id}}/viewpage=" + page2);
+			$('#page2').attr("href", "/all-product/viewpage=" + page2 + {{searchObjectString}});
 			$('#page1').removeClass('active');
 			$('#page2').addClass('active');
 			$('#page3').removeClass('active');
@@ -326,9 +328,9 @@
 			console.log(page3);
 		}
 	});
-	$('#page3').click(function () {
+	$('#page3').onclick(function () {
 		if ({{count}} == 8) {
-			$('#page3').attr("href", "/all-product-{{id}}/viewpage=" + page3);
+			$('#page3').attr("href", "/all-product/viewpage=" + page3  + {{searchObjectString}});
 			$('#page1').removeClass('active');
 			$('#page2').removeClass('active');
 			$('#page3').addClass('active');
@@ -337,12 +339,12 @@
 			$('#page3').html(page3);
 		}
 	});
-	$('#next').click(function () {
+	$('#next').onclick(function () {
 		if ({{count}} == 8) {
 			page1 += 1;
 			page2 += 1;
 			page3 += 1;
-			$('#next').attr("href", "/all-product-{{id}}/viewpage=" + page1);
+			$('#next').attr("href", "/all-product/viewpage=" + page1 + {{searchObjectString}});
 			$('#page1').addClass('active');
 			$('#page2').removeClass('active');
 			$('#page3').removeClass('active');
@@ -351,12 +353,12 @@
 			$('#page3').html(page3);
 		}
 	});
-	$('#prev').click(function () {
+	$('#prev').onclick(function () {
 		if (page1 > 1) {
 			page1 -= 1;
 			page2 -= 1;
 			page3 -= 1;
-			$('#prev').attr("href", "/all-product-{{id}}/viewpage=" + page1);
+			$('#prev').attr("href", "/all-product/viewpage=" + page1 + {{searchObjectString}});
 			$('#page1').addClass('active');
 			$('#page2').removeClass('active');
 			$('#page3').removeClass('active');
@@ -367,4 +369,4 @@
 	});
 	$('#page2').html(page2);
 	$('#page3').html(page3);
-</script>
+</script> -->
