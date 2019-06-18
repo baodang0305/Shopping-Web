@@ -9,6 +9,7 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
 const mongoose = require('mongoose');
+const hbs = require('hbs');
 require('./config/passport');
 
 //require for routes
@@ -27,6 +28,31 @@ mongoose.connect(uri, {useNewUrlParser: true}).then(
   ()=>{console.log('connect is success')},
   err=>{console.log(err);}
 );
+
+hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
+  switch (operator) {
+      case '==':
+          return (v1 == v2) ? options.fn(this) : options.inverse(this);
+      case '===':
+          return (v1 === v2) ? options.fn(this) : options.inverse(this);
+      case '!==':
+          return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+      case '<':
+          return (v1 < v2) ? options.fn(this) : options.inverse(this);
+      case '<=':
+          return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+      case '>':
+          return (v1 > v2) ? options.fn(this) : options.inverse(this);
+      case '>=':
+          return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+      case '&&':
+          return (v1 && v2) ? options.fn(this) : options.inverse(this);
+      case '||':
+          return (v1 || v2) ? options.fn(this) : options.inverse(this);
+      default:
+          return options.inverse(this);
+  }
+});
 
 app.set('views', [
   path.join(__dirname, 'views'),
@@ -49,19 +75,8 @@ app.use(session({secret: 'mysecret', resave: true, saveUninitialized: true}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public/stylesheets')));
-app.use(express.static(path.join(__dirname, 'public/stylesheets/theme-color')));
-app.use(express.static(path.join(__dirname, 'public/javascripts')));
-app.use(express.static(path.join(__dirname, 'public/images')));
-app.use(express.static(path.join(__dirname, 'public/images/fashion')));
-app.use(express.static(path.join(__dirname, 'public/images/flag')));
-app.use(express.static(path.join(__dirname, 'public/images/slider')));
-app.use(express.static(path.join(__dirname, 'public/images/slider/ajax-loader.gif')));
 
-app.use(express.static(path.join(__dirname, 'public/images/view-slider/larger')));
-app.use(express.static(path.join(__dirname, 'public/images/view-slider/medium')));
-app.use(express.static(path.join(__dirname, 'public/images/view-slider/thumbnail')));
-app.use(express.static(path.join(__dirname, 'public/scss')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 
 app.use('/', indexRouter);

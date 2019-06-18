@@ -20,11 +20,16 @@ router.get('/cart', requiresLogin, function(req, res, next){
     let total = 0;
     let arrProduct=[];
     await cart.findOne({Username: req.user.Username}, function(err, data){
+      if(err){
+        console.log(err);
+      }
+      else if(data){
         let tempArr = data.Product;
         tempArr.forEach(item => {
           total = total + item.Total;
             arrProduct.push(item);
         });
+      }
     });
     res.render('cart', { title: 'Giỏ hàng', isLogin: Boolean(req.user), user: req.user, 'list_product': arrProduct, 'total': total});
   }
@@ -83,13 +88,28 @@ router.post('/addcart-:id', requiresLogin, function(req, res, next){
                   else{ console.log('cart is created');}
               });
           }
-          res.redirect('/cart');
+          res.redirect('/');
       }
       Async_Await();
   }
   else{
           res.redirect('/product-detail-'+id);
   }
+});
+
+router.post('/product-cart-delete-:id', function(req, res){
+  let id = req.params.id;
+  let object_id = new ObjectId(id);
+  cart.update({Username: req.user.Username}, 
+    {$pull: {'Product': {_id: object_id}}},  
+    function(err) {
+    if(err){
+      console.log(err);
+    }else{
+      console.log('delete product in cart is success');
+    }
+  })
+  res.redirect('/cart');
 });
 
 module.exports = router;

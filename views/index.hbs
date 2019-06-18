@@ -1,14 +1,14 @@
 <!-- / menu -->
   <!-- Start slider -->
-  <!-- <section id="aa-slider">
+  <section id="aa-slider">
     <div class="aa-slider-area">
       <div id="sequence" class="seq">
         <div class="seq-screen">
           <ul class="seq-canvas">
-            <!-- single slide item --> -->
-            <!-- <li>
+            <!-- single slide item -->
+            <li>
               <div class="seq-model">
-                <img data-seq src="slider1.jpg" alt="Men slide img" />
+                <img data-seq src="/images/slider1.jpg" alt="Men slide img" />
               </div>
               <div class="seq-title">
                <span data-seq>Tiết kiệm tới 70%</span>
@@ -16,10 +16,10 @@
                 <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">Mua ngay</a>
               </div>
             </li>
-            <!-- single slide item --> -->
+            <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="slider2.jpg" alt="Women Jeans slide img" />
+                <img data-seq src="/images/slider2.jpg" alt="Women Jeans slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Tiết kiệm tới 70%</span>
@@ -60,7 +60,7 @@
                         {{#each list_product_man}}
                         <!-- start single product item -->
                         <li>
-                          <!-- <figure>
+                          <figure>
                             <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                             <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                               <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
@@ -78,7 +78,7 @@
                         </li>
                         {{/each}}
                       </ul>
-                      <a class="aa-browse-btn" href="all-product-man">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="all-product-man/viewpage=1">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / men product category -->
 
@@ -89,7 +89,7 @@
                         {{#each list_product_women}}
                         <li>
                           <figure>
-                            <!-- <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a> -->
+                            <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                             <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                               <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                             </form>
@@ -106,7 +106,7 @@
                         </li>
                         {{/each}}
                       </ul>
-                      <a class="aa-browse-btn" href="all-product-women">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="all-product-women/viewpage=1">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / women product category -->
 
@@ -117,7 +117,7 @@
                         {{#each list_product_sport}}
                         <li>
                           <figure>
-                            <!-- <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a> -->
+                            <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                             <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                               <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                             </form>
@@ -152,7 +152,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="aa-banner-area">
-            <a href="#"><img src="fashion-banner.jpg" alt="fashion banner img"></a>
+            <a href="#"><img src="/images/fashion-banner.jpg" alt="fashion banner img"></a>
           </div>
           </div>
         </div>
@@ -182,7 +182,7 @@
                     {{#each list_product_popular}}
                     <li>
                       <figure>
-                        <!-- <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a> -->
+                        <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                         <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                           <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                         </form>
@@ -199,7 +199,7 @@
                     </li>
                     {{/each}}
                   </ul>
-                  <a class="aa-browse-btn" href="all-product-popular">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="all-product-popular/viewpage=1">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / popular product category -->
 
@@ -210,7 +210,7 @@
                     {{#each list_product_feature}}
                     <li>
                       <figure>
-                        <!-- <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a> -->
+                        <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                         <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                           <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                         </form>
@@ -227,7 +227,7 @@
                       {{/each}}
                     </li>
                   </ul>
-                  <a class="aa-browse-btn" href="all-product-feature">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="all-product-feature/viewpage=1">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / featured product category -->
 
@@ -238,7 +238,7 @@
                     {{#each list_product_new}}
                     <li>
                       <figure>
-                        <!-- <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a> -->
+                        <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                         <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                           <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                         </form>
@@ -256,7 +256,7 @@
                     {{/each}}
                      <!-- start single product item -->
                   </ul>
-                   <a class="aa-browse-btn" href="all-product-new">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
+                   <a class="aa-browse-btn" href="all-product-new/viewpage=1">Tất Cả Sản Phẩm<span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / latest product category -->
               </div>

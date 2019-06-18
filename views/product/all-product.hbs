@@ -1,6 +1,6 @@
 <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-   <img src="fashion-header-bg-8.jpg" alt="fashion img">
+   <img src="/images/fashion-header-bg-8.jpg" alt="fashion img">
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
@@ -51,7 +51,7 @@
                 <!-- start single product item -->
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="/product-detail-{{this._id}}"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="polo shirt img"></a>
                     <form  action='/addcart-{{this._id}}' method="POST" class="form-inline">
                       <span class="aa-add-card-btn fa fa-shopping-cart"><input type="submit" class="background-color-black border-none" value="Thêm Vào Giỏ Hàng"></span>
                     </form>
@@ -83,7 +83,7 @@
                               <div class="simpleLens-container">
                                   <div class="simpleLens-big-image-container">
                                       <a class="simpleLens-lens-image" data-lens-image="img/view-slider/large/polo-shirt-1.png">
-                                          <img src="polo-shirt-1.png" class="simpleLens-big-image">
+                                          <img src="/images/polo-shirt-1.png" class="simpleLens-big-image">
                                       </a>
                                   </div>
                               </div>
@@ -91,18 +91,18 @@
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
                                      data-lens-image="img/view-slider/large/polo-shirt-1.png"
                                      data-big-image="img/view-slider/medium/polo-shirt-1.png">
-                                      <img src="polo-shirt-1.png">
+                                      <img src="/images/polo-shirt-1.png">
                                   </a>
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
                                      data-lens-image="img/view-slider/large/polo-shirt-3.png"
                                      data-big-image="img/view-slider/medium/polo-shirt-3.png">
-                                      <img src="polo-shirt-3.png">
+                                      <img src="/images/polo-shirt-3.png">
                                   </a>
 
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
                                      data-lens-image="img/view-slider/large/polo-shirt-4.png"
                                      data-big-image="img/view-slider/medium/polo-shirt-4.png">
-                                      <img src="polo-shirt-4.png">
+                                      <img src="/images/polo-shirt-4.png">
                                   </a>
                               </div>
                             </div>
@@ -152,21 +152,22 @@
               </div>
               <!-- / quick view modal -->
             </div>
+            {{#ifCond count "<" 8}}
+              <h3 class="text-center color-red">Trang Cuối</h3>
+            {{/ifCond}}
             <div class="aa-product-catg-pagination">
               <nav>
                 <ul class="pagination">
                   <li>
-                    <a href="#" aria-label="Previous">
+                    <a id="prev" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
+                  <li class="active"><a id="page1">{{page}}</a></li>
+                  <li><a id="page2"></a></li>
+                  <li><a id="page3"></a></li>
                   <li>
-                    <a href="#" aria-label="Next">
+                    <a id="next" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                     </a>
                   </li>
@@ -226,21 +227,21 @@
               <div class="aa-recently-views">
                 <ul>
                   <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-2.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-2.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
                     </div>
                   </li>
                   <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-1.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-1.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
                     </div>
                   </li>
                    <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-2.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-2.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
@@ -255,21 +256,21 @@
               <div class="aa-recently-views">
                 <ul>
                   <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-2.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-2.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
                     </div>
                   </li>
                   <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-1.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-1.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
                     </div>
                   </li>
                    <li>
-                    <a href="#" class="aa-cartbox-img"><img alt="img" src="woman-small-2.jpg"></a>
+                    <a href="#" class="aa-cartbox-img"><img alt="img" src="/images/woman-small-2.jpg"></a>
                     <div class="aa-cartbox-info">
                       <h4><a href="#">Product Name</a></h4>
                       <p>1 x $250</p>
@@ -285,3 +286,62 @@
     </div>
   </section>
   <!-- / product category -->
+
+  <script>
+	var page1 = parseInt($('#page1').html());
+    var page2 = page1 + 1;
+    var page3 = page1 + 2;
+	$('#page2').click(function () {
+		if ({{count}} == 8) {
+			$('#page2').attr("href", "/all-product-{{id}}/viewpage=" + page2);
+			$('#page1').removeClass('active');
+			$('#page2').addClass('active');
+			$('#page3').removeClass('active');
+			$('#page1').html(page1);
+			$('#page2').html(page2);
+			$('#page3').html(page3);
+			console.log(page3);
+		}
+	});
+	$('#page3').click(function () {
+		if ({{count}} == 8) {
+			$('#page3').attr("href", "/all-product-{{id}}/viewpage=" + page3);
+			$('#page1').removeClass('active');
+			$('#page2').removeClass('active');
+			$('#page3').addClass('active');
+			$('#page1').html(page1);
+			$('#page2').html(page2);
+			$('#page3').html(page3);
+		}
+	});
+	$('#next').click(function () {
+		if ({{count}} == 8) {
+			page1 += 1;
+			page2 += 1;
+			page3 += 1;
+			$('#next').attr("href", "/all-product-{{id}}/viewpage=" + page1);
+			$('#page1').addClass('active');
+			$('#page2').removeClass('active');
+			$('#page3').removeClass('active');
+			$('#page1').html(page1);
+			$('#page2').html(page2);
+			$('#page3').html(page3);
+		}
+	});
+	$('#prev').click(function () {
+		if (page1 > 1) {
+			page1 -= 1;
+			page2 -= 1;
+			page3 -= 1;
+			$('#prev').attr("href", "/all-product-{{id}}/viewpage=" + page1);
+			$('#page1').addClass('active');
+			$('#page2').removeClass('active');
+			$('#page3').removeClass('active');
+			$('#page1').html(page1);
+			$('#page2').html(page2);
+			$('#page3').html(page3);
+		}
+	});
+	$('#page2').html(page2);
+	$('#page3').html(page3);
+</script>
