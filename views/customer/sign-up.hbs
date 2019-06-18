@@ -43,6 +43,10 @@
                     <input class="passwordBox" type="password" placeholder="Password" name="Password" id="Password" onkeyup="checkPassword();">
                     <label class="note">ít nhất 10, nhiều nhất 20 kí tự, có kí tự viết hoa, có chữ số. </label>
                   </div>
+                  <div class="form-group">
+                    <label for="">Mật khẩu nhập lại<span>(*)</span><span class="node" id="errMessPassword"></span></label>
+                    <input class="passwordBox" type="password" placeholder="Password" name="RePassword" id="RePassword" onkeyup="checkRePassword();">
+                  </div>
 
                   <div class="form-group">
                     <label for="">Tên của bạn<span class="node" id="errMessName"></span></label>
@@ -67,7 +71,7 @@
               </div>
             </div>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="aa-browse-btn col-sm-offset-5">Đăng Ký</button>
+            <button type="submit" class="aa-browse-btn col-sm-offset-5" id="SubmitButton">Đăng Ký</button>
           </form>
         </div>
       </div>

@@ -8,7 +8,7 @@ var CommentModel = require('../../models/comment');
 router.get('/product-detail-:id', function(req, res, next){
   var id = req.params.id;
   var object_id = new ObjectId(id);
-  MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, dbRef) { 
+  MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, dbRef) {
     if(err){
       console.log(err);
     }
@@ -16,13 +16,15 @@ router.get('/product-detail-:id', function(req, res, next){
       const collectionProduct = dbRef.db("shoppingdb").collection("Product");
       const collectionComment = dbRef.db("shoppingdb").collection("Comment");
       (async()=>{
+
         let product_detail = await collectionProduct.findOne({_id: object_id});
+        collectionProduct.updateOne({}, {'$set': {'watchNumber': product_detail.watchNumber + 1}})
         let all_product = await collectionProduct.find({}).toArray();
         let related_comment_array = await collectionComment.find({Product: object_id}).toArray();
         let all_product_related = await collectionProduct.find({Category: product_detail.Category, Gender: product_detail.Gender}).toArray();
 
         dbRef.close();
-        
+
         let alteredCommentArray = []
         for (i = 0; i < related_comment_array.length; i++) {
           let commentModel = new CommentModel()
@@ -37,9 +39,10 @@ router.get('/product-detail-:id', function(req, res, next){
         all_product: all_product,
         hasComment: Boolean(alteredCommentArray),
         related_comment: alteredCommentArray,
-        'all_product_related': all_product_related
+        'all_product_related': all_product_related,
+        watchNumber: product_detail.watchNumber + 1
         });
-        
+
       })();
     }
   });
