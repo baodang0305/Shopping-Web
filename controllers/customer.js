@@ -189,10 +189,45 @@ router.get('/signup', function(req, res,next){
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-  successRedirect: '/account-detail',
+  successRedirect: '/after-signup',
   failureRedirect: '/signup',
-  failureFlash: true
+  failureFlash: true,
 }));
+
+router.get('/after-signup', function(req, res){
+  res.render('after-signup', {title: 'Kích hoạt tài khoản'});
+})
+
+router.post('/activated', function(req, res){
+  if(req.body.email == ""){
+    let mess = "Bạn chưa nhập email";
+    res.render('after-signup', {title: 'Kích hoạt tài khoản', mess})
+  }
+  else{
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'baodang3597@gmail.com',
+        pass: 'baodang0305'
+      }
+    });
+    const mailOptions = {
+      from: 'Bao Dang',
+      to: req.body.email,
+      subject: 'Confirm changes password',
+      html: '<b>Vui lòng truy cập vào đường link sau để kích hoạt tài khoản của bạn:</b> https://khtn-it-cq2016-shopping-web.herokuapp.com/'
+            
+
+    }
+    transporter.sendMail(mailOptions, function(err, info){
+      if(err){
+        return console.log(err);
+      }
+      console.log("Gửi mail thành công");
+    });
+    redirect('/after-signup');
+  }
+})
 
 router.post('/signin', passport.authenticate('local.signin', {
   successRedirect: '/',

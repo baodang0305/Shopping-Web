@@ -52,7 +52,9 @@ router.post('/checkout', requiresLogin, function(req,res,next) {
     for (let i = 0; i < product_list.length; i++) {
       sum = sum + Number(product_list[i].Total)
       product_lite_list.push({
-        id: product_list[i].__id,
+        id: product_list[i]._id,
+        name: product_list[i].Name,
+        cost: product_list[i].Cost,
         amount: product_list[i].Amount
       });
     }

@@ -38,23 +38,17 @@
                     <tbody>
                       {{#each list_product}}
                         <tr>
-                          <td><a class="remove" ><fa class="fa fa-close"></fa></a></td>
+                          <form action="/product-cart-delete-{{this._id}}" method="POST">
+                            <td><button class="fa fa-close fa-1x" type="submit"></button></td>
+                          </form>
                           <td><a href="#"><img src="https://khtn-it-cq2016-shopping-admin.herokuapp.com/{{this.Image}}" alt="img"></a></td>
                           <td><a class="aa-cart-title" href="#">{{this.Name}}</a></td>
                           <td>${{this.Cost}}</td>
-                          <td><input class="aa-cart-quantity" type="number" value="{{this.Amount}}"></td>
+                          <td><input class="aa-cart-quantity" type="number" value="{{this.Amount}}" readonly></td>
                           <td>${{this.Total}}</td>
                         </tr>
                       {{/each}}
-                      <tr>
-                        <td colspan="6" class="aa-cart-view-bottom">
-                          <div class="aa-cart-coupon">
-                            <input class="aa-coupon-code" type="text" placeholder="Mã khuyến mãi">
-                            <input class="aa-cart-view-btn" type="submit" value="Áp dụng">
-                          </div>
-                          <input class="aa-cart-view-btn" type="submit" value="Cập nhật giỏ">
-                        </td>
-                      </tr>
+                      
                       </tbody>
                   </table>
                 </div>

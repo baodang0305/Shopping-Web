@@ -2,7 +2,11 @@ const express = require('express');
 const product = require('../../models/product');
 const router = express.Router();
 
-router.get('/all-product', function(req, res, next){
+const LIMIT = 8;
+router.get('/all-product-:id/viewpage=:page', function(req, res, next){
+  var id = req.params.id;
+  var page = req.params.page;
+  console.log(page);
   (async()=>{
     var list_all_product;
     if (req.query.all != null) {
@@ -45,7 +49,7 @@ router.get('/all-product', function(req, res, next){
       if (req.query.Product_Group != 0) {
         searchObject.Product_Group = req.query.Product_Group
       }
-      list_all_product = await product.find(searchObject);
+      list_all_product = await product.find(searchObject).limit(LIMIT).skip(page*LIMIT - LIMIT);
     }
     res.render('all-product', { title: 'Danh sách sản phẩm', isLogin: Boolean(req.user), user: req.user, 'list_all_product': list_all_product});
   })();

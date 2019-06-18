@@ -1,6 +1,5 @@
 var numberStarClicked = 0
 for(let i = 1; i <= 5 ; i++) {
-  console.log("star is set up")
   document.getElementById("star" + i).addEventListener("mouseover", function(){
     for(let j = i; j >= 1; j--) {
       if (document.getElementById("star" + j).classList.contains('fa-star-o')) {
